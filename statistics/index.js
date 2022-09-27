@@ -3,7 +3,7 @@
 const { orders, percent } = require('./data.json');
 
 const msInHMS = 1000 * 60 * 60 * 24;
-const removeHMS = (ms) => (ms / msInHMS) % 1 * msInHMS;
+const removeHMS = (ms) => (~~(ms / msInHMS)) * msInHMS;
 
 orders.forEach((order) => order.timestamp = removeHMS(order.timestamp));
 
