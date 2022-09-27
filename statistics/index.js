@@ -55,6 +55,33 @@ for (const [, value] of Object.entries(dic)) {
 
 }
 
-console.table(statuses);
+// console.table(statuses);
 
-console.dir(statuses['Отказ'], { depth: null });
+const values = Object.values(statuses);
+
+const all = {
+    color: "#000000",
+    name: 'Все',
+    count: orders.length,
+    percent: '100',
+    yAxis: 1,
+    key: 0,
+    data: [],
+    zIndex: 2
+};
+
+const timeStamps = {};
+filtered.forEach(({ timestamp }) => timeStamps[timestamp] ? timeStamps[timestamp].y++ : timeStamps[timestamp] = {
+    y: 1,
+    x: timestamp,
+    marker
+});
+
+console.table(timeStamps);
+all.data = Object.values(timeStamps).sort(({ x1 }, { x2 }) => x2 - x1);
+
+console.dir(all, { depth: null });
+
+values.unshift(all);
+
+console.table(values);
