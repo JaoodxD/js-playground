@@ -2,6 +2,11 @@
 
 const { orders, percent } = require('./data.json');
 
+const msInHMS = 1000 * 60 * 60 * 24;
+const removeHMS = (ms) => (ms / msInHMS) % 1 * msInHMS;
+
+orders.forEach((order) => order.timestamp = removeHMS(order.timestamp));
+
 const getPercent = (id) => percent.find(({ statusId }) => statusId === id).count;
 
 class StatUnit {

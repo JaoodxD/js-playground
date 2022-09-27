@@ -1,5 +1,12 @@
-import m1 from './simplemodule.js';
-import m2 from './simplemodule.js';
+'use strict';
 
+(async () => {
+    const { hello: m1 } = await import('./simplemodule.js');
 
-console.log(m1===m2);
+    delete require.cache[require.resolve('./simplemodule')];
+
+    const { hello: m2 } = require('./simplemodule');
+
+    console.log(m1 === m2);
+
+})();
