@@ -78,7 +78,7 @@ filtered.forEach(({ timestamp }) => timeStamps[timestamp] ? timeStamps[timestamp
 });
 
 console.table(timeStamps);
-all.data = Object.values(timeStamps).sort(({ x1 }, { x2 }) => x2 - x1);
+all.data = Object.values(timeStamps).sort(({ x:x1 }, { x:x2 }) => x2 - x1);
 
 console.dir(all, { depth: null });
 
