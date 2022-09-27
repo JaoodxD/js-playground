@@ -2,7 +2,7 @@
 
 const { orders, percent } = require('./data.json');
 
-const getPercent = (id) => percent.find(({ statusId, count }) => statusId === id).count;
+const getPercent = (id) => percent.find(({ statusId }) => statusId === id).count;
 
 class StatUnit {
     constructor({ status, statusId, timestamp }) {
@@ -24,10 +24,6 @@ console.table(dic);
 console.log(Object.entries(dic).length);
 
 const statuses = {};
-
-statuses['Все'] = {
-
-}
 
 let i = 1;
 
