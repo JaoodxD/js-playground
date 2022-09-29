@@ -10,10 +10,16 @@ const data = require('./data.json');
  * @returns 
  */
 const calcStatistics = ({ orders, percent }, roundTo = 'Days') => {
-    const msInDays = 1000 * 60 * 60 * 24;
-    const msInHours = 1000 * 60 * 60;
-    const stripDays = (ms) => (~~(ms / msInDays)) * msInDays;
-    const stripHours = (ms) => (~~(ms / msInHours)) * msInHours;
+    //1000ms in 1s, 60s in 1m, 60m in 1h
+    const msInHour = 1000 * 60 * 60;
+    //24h in 1d
+    const msInDay = msInHour * 24;
+    const stripDays = (ms) => Math.floor(ms / msInDay) * msInDay;
+    const stripHours = (ms) => {
+        let newMs = Math.floor(ms / msInHour) * msInHour;
+        if((newMs % msInDay) / msInHour === 0) newMs+=msInHour;
+        return newMs;
+    };
 
     const rounder = {
         'Days': stripDays,
