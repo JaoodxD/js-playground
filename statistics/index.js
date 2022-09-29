@@ -2,6 +2,7 @@
 
 const data = require('./data.json');
 const data2 = require('./data2.json');
+const data3 = require('./data3.json');
 
 
 /**
@@ -16,7 +17,11 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) =>
     const msInHour = 1000 * 60 * 60;
     //24h in 1d
     const msInDay = msInHour * 24;
-    const stripDays = (ms) => Math.floor(ms / msInDay) * msInDay;
+    const stripDays = (ms) => {
+        ms += timeZone * msInHour;
+        let newMs = Math.floor(ms / msInDay) * msInDay;
+        return newMs;
+    };
     const stripHours = (ms) => {
         let newMs = Math.floor(ms / msInHour) * msInHour;
         let hoursInThisDay = (newMs % msInDay) / msInHour + timeZone;
@@ -119,7 +124,7 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) =>
     return values;
 };
 
-const result = calcStatistics(data2, 'Hours');
+const result = calcStatistics(data3, 'Days');
 
 console.table(result);
 
