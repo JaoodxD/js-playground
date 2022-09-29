@@ -1,0 +1,1056 @@
+{
+    "orders": [
+        {
+            "id": 9812,
+            "statusId": 6,
+            "add_order": "2022-09-21T22:37:26.520Z",
+            "status": {
+                "name": "Передан",
+                "color": "#c6b922"
+            },
+            "timestamp": 1663799846000
+        },
+        {
+            "id": 9565,
+            "statusId": 11,
+            "add_order": "2022-09-21T22:37:25.195Z",
+            "status": {
+                "name": "Возврат",
+                "color": "#da291c"
+            },
+            "timestamp": 1663799845000
+        },
+        {
+            "id": 9547,
+            "statusId": 5,
+            "add_order": "2022-09-21T21:37:25.116Z",
+            "status": {
+                "name": "Упакован",
+                "color": "#928c42"
+            },
+            "timestamp": 1663796245000
+        },
+        {
+            "id": 9458,
+            "statusId": 13,
+            "add_order": "2022-09-21T21:37:24.715Z",
+            "status": {
+                "name": "Возврат (получен)",
+                "color": "#860101"
+            },
+            "timestamp": 1663796244000
+        },
+        {
+            "id": 9304,
+            "statusId": 4,
+            "add_order": "2022-09-21T22:37:24.025Z",
+            "status": {
+                "name": "Отказ",
+                "color": "#fd7777"
+            },
+            "timestamp": 1663799844000
+        },
+        {
+            "id": 9282,
+            "statusId": 3,
+            "add_order": "2022-09-21T21:37:23.925Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663796243000
+        },
+        {
+            "id": 8951,
+            "statusId": 14,
+            "add_order": "2022-09-21T22:37:22.422Z",
+            "status": {
+                "name": "Возврат (завершён)",
+                "color": "#FF0000"
+            },
+            "timestamp": 1663799842000
+        },
+        {
+            "id": 8749,
+            "statusId": 13,
+            "add_order": "2022-09-21T21:37:21.487Z",
+            "status": {
+                "name": "Возврат (получен)",
+                "color": "#860101"
+            },
+            "timestamp": 1663796241000
+        },
+        {
+            "id": 8743,
+            "statusId": 8,
+            "add_order": "2022-09-21T22:37:21.450Z",
+            "status": {
+                "name": "Выкуплен",
+                "color": "#64a727"
+            },
+            "timestamp": 1663799841000
+        },
+        {
+            "id": 8712,
+            "statusId": 21,
+            "add_order": "2022-09-21T22:37:21.299Z",
+            "status": {
+                "name": "(Drop) Возврат (учтён)",
+                "color": "#d90d53"
+            },
+            "timestamp": 1663799841000
+        },
+        {
+            "id": 8557,
+            "statusId": 3,
+            "add_order": "2022-09-21T22:37:20.618Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663799840000
+        },
+        {
+            "id": 8502,
+            "statusId": 3,
+            "add_order": "2022-09-21T21:37:20.364Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663796240000
+        },
+        {
+            "id": 8487,
+            "statusId": 13,
+            "add_order": "2022-09-21T22:37:20.299Z",
+            "status": {
+                "name": "Возврат (получен)",
+                "color": "#860101"
+            },
+            "timestamp": 1663799840000
+        },
+        {
+            "id": 8478,
+            "statusId": 12,
+            "add_order": "2022-09-21T22:37:20.260Z",
+            "status": {
+                "name": "Возврат (прибыл)",
+                "color": "#b52318"
+            },
+            "timestamp": 1663799840000
+        },
+        {
+            "id": 8408,
+            "statusId": 11,
+            "add_order": "2022-09-21T21:37:19.953Z",
+            "status": {
+                "name": "Возврат",
+                "color": "#da291c"
+            },
+            "timestamp": 1663796239000
+        },
+        {
+            "id": 8398,
+            "statusId": 14,
+            "add_order": "2022-09-21T22:37:19.910Z",
+            "status": {
+                "name": "Возврат (завершён)",
+                "color": "#FF0000"
+            },
+            "timestamp": 1663799839000
+        },
+        {
+            "id": 8356,
+            "statusId": 4,
+            "add_order": "2022-09-21T22:37:19.708Z",
+            "status": {
+                "name": "Отказ",
+                "color": "#fd7777"
+            },
+            "timestamp": 1663799839000
+        },
+        {
+            "id": 8278,
+            "statusId": 8,
+            "add_order": "2022-09-21T22:37:19.343Z",
+            "status": {
+                "name": "Выкуплен",
+                "color": "#64a727"
+            },
+            "timestamp": 1663799839000
+        },
+        {
+            "id": 8276,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:37:19.334Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799839000
+        },
+        {
+            "id": 8236,
+            "statusId": 16,
+            "add_order": "2022-09-21T21:37:19.150Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663796239000
+        },
+        {
+            "id": 7904,
+            "statusId": 9,
+            "add_order": "2022-09-21T21:37:17.631Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663796237000
+        },
+        {
+            "id": 7839,
+            "statusId": 9,
+            "add_order": "2022-09-21T21:37:17.332Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663796237000
+        },
+        {
+            "id": 7822,
+            "statusId": 9,
+            "add_order": "2022-09-21T22:37:17.257Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663799837000
+        },
+        {
+            "id": 7624,
+            "statusId": 11,
+            "add_order": "2022-09-21T21:37:16.379Z",
+            "status": {
+                "name": "Возврат",
+                "color": "#da291c"
+            },
+            "timestamp": 1663796236000
+        },
+        {
+            "id": 7619,
+            "statusId": 3,
+            "add_order": "2022-09-21T21:37:16.357Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663796236000
+        },
+        {
+            "id": 7440,
+            "statusId": 3,
+            "add_order": "2022-09-21T22:37:15.463Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663799835000
+        },
+        {
+            "id": 7387,
+            "statusId": 5,
+            "add_order": "2022-09-21T21:37:15.233Z",
+            "status": {
+                "name": "Упакован",
+                "color": "#928c42"
+            },
+            "timestamp": 1663796235000
+        },
+        {
+            "id": 7265,
+            "statusId": 11,
+            "add_order": "2022-09-21T22:37:14.699Z",
+            "status": {
+                "name": "Возврат",
+                "color": "#da291c"
+            },
+            "timestamp": 1663799834000
+        },
+        {
+            "id": 7225,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:37:14.522Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799834000
+        },
+        {
+            "id": 7053,
+            "statusId": 2,
+            "add_order": "2022-09-21T21:37:13.745Z",
+            "status": {
+                "name": "Новый",
+                "color": "#515151"
+            },
+            "timestamp": 1663796233000
+        },
+        {
+            "id": 6933,
+            "statusId": 6,
+            "add_order": "2022-09-21T21:37:13.165Z",
+            "status": {
+                "name": "Передан",
+                "color": "#c6b922"
+            },
+            "timestamp": 1663796233000
+        },
+        {
+            "id": 6932,
+            "statusId": 3,
+            "add_order": "2022-09-21T21:37:13.160Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663796233000
+        },
+        {
+            "id": 6793,
+            "statusId": 4,
+            "add_order": "2022-09-21T21:37:12.548Z",
+            "status": {
+                "name": "Отказ",
+                "color": "#fd7777"
+            },
+            "timestamp": 1663796232000
+        },
+        {
+            "id": 6634,
+            "statusId": 14,
+            "add_order": "2022-09-21T21:37:11.828Z",
+            "status": {
+                "name": "Возврат (завершён)",
+                "color": "#FF0000"
+            },
+            "timestamp": 1663796231000
+        },
+        {
+            "id": 6610,
+            "statusId": 11,
+            "add_order": "2022-09-21T21:37:11.722Z",
+            "status": {
+                "name": "Возврат",
+                "color": "#da291c"
+            },
+            "timestamp": 1663796231000
+        },
+        {
+            "id": 6603,
+            "statusId": 19,
+            "add_order": "2022-09-21T21:37:11.690Z",
+            "status": {
+                "name": "(Drop) Завершён",
+                "color": "#169dd9"
+            },
+            "timestamp": 1663796231000
+        },
+        {
+            "id": 6262,
+            "statusId": 3,
+            "add_order": "2022-09-21T22:37:10.137Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663799830000
+        },
+        {
+            "id": 5965,
+            "statusId": 15,
+            "add_order": "2022-09-21T22:37:08.808Z",
+            "status": {
+                "name": "(Drop) Ожидает ТТН",
+                "color": "#856915"
+            },
+            "timestamp": 1663799828000
+        },
+        {
+            "id": 5760,
+            "statusId": 20,
+            "add_order": "2022-09-21T21:37:07.883Z",
+            "status": {
+                "name": "(Drop) Возврат",
+                "color": "#a82451"
+            },
+            "timestamp": 1663796227000
+        },
+        {
+            "id": 5741,
+            "statusId": 21,
+            "add_order": "2022-09-21T21:37:07.787Z",
+            "status": {
+                "name": "(Drop) Возврат (учтён)",
+                "color": "#d90d53"
+            },
+            "timestamp": 1663796227000
+        },
+        {
+            "id": 5576,
+            "statusId": 3,
+            "add_order": "2022-09-21T22:37:06.962Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663799826000
+        },
+        {
+            "id": 5435,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:37:06.279Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799826000
+        },
+        {
+            "id": 5342,
+            "statusId": 5,
+            "add_order": "2022-09-21T22:37:05.843Z",
+            "status": {
+                "name": "Упакован",
+                "color": "#928c42"
+            },
+            "timestamp": 1663799825000
+        },
+        {
+            "id": 5239,
+            "statusId": 8,
+            "add_order": "2022-09-21T22:37:05.364Z",
+            "status": {
+                "name": "Выкуплен",
+                "color": "#64a727"
+            },
+            "timestamp": 1663799825000
+        },
+        {
+            "id": 5198,
+            "statusId": 2,
+            "add_order": "2022-09-21T21:37:05.169Z",
+            "status": {
+                "name": "Новый",
+                "color": "#515151"
+            },
+            "timestamp": 1663796225000
+        },
+        {
+            "id": 4934,
+            "statusId": 13,
+            "add_order": "2022-09-21T22:37:03.850Z",
+            "status": {
+                "name": "Возврат (получен)",
+                "color": "#860101"
+            },
+            "timestamp": 1663799823000
+        },
+        {
+            "id": 4853,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:37:03.467Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799823000
+        },
+        {
+            "id": 4764,
+            "statusId": 9,
+            "add_order": "2022-09-21T22:37:03.064Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663799823000
+        },
+        {
+            "id": 4689,
+            "statusId": 19,
+            "add_order": "2022-09-21T22:37:02.695Z",
+            "status": {
+                "name": "(Drop) Завершён",
+                "color": "#169dd9"
+            },
+            "timestamp": 1663799822000
+        },
+        {
+            "id": 4653,
+            "statusId": 3,
+            "add_order": "2022-09-21T21:37:02.515Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663796222000
+        },
+        {
+            "id": 4631,
+            "statusId": 17,
+            "add_order": "2022-09-21T21:37:02.411Z",
+            "status": {
+                "name": "(Drop) Отправлен",
+                "color": "#d7a214"
+            },
+            "timestamp": 1663796222000
+        },
+        {
+            "id": 4619,
+            "statusId": 9,
+            "add_order": "2022-09-21T22:37:02.357Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663799822000
+        },
+        {
+            "id": 4581,
+            "statusId": 4,
+            "add_order": "2022-09-21T22:37:02.175Z",
+            "status": {
+                "name": "Отказ",
+                "color": "#fd7777"
+            },
+            "timestamp": 1663799822000
+        },
+        {
+            "id": 4408,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:37:01.345Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799821000
+        },
+        {
+            "id": 4376,
+            "statusId": 10,
+            "add_order": "2022-09-21T22:37:01.185Z",
+            "status": {
+                "name": "Завершён",
+                "color": "#00CC00"
+            },
+            "timestamp": 1663799821000
+        },
+        {
+            "id": 4343,
+            "statusId": 3,
+            "add_order": "2022-09-21T21:37:01.027Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663796221000
+        },
+        {
+            "id": 4003,
+            "statusId": 4,
+            "add_order": "2022-09-21T21:36:59.401Z",
+            "status": {
+                "name": "Отказ",
+                "color": "#fd7777"
+            },
+            "timestamp": 1663796219000
+        },
+        {
+            "id": 3899,
+            "statusId": 14,
+            "add_order": "2022-09-21T21:36:58.922Z",
+            "status": {
+                "name": "Возврат (завершён)",
+                "color": "#FF0000"
+            },
+            "timestamp": 1663796218000
+        },
+        {
+            "id": 3800,
+            "statusId": 8,
+            "add_order": "2022-09-21T22:36:58.429Z",
+            "status": {
+                "name": "Выкуплен",
+                "color": "#64a727"
+            },
+            "timestamp": 1663799818000
+        },
+        {
+            "id": 3777,
+            "statusId": 15,
+            "add_order": "2022-09-21T22:36:58.324Z",
+            "status": {
+                "name": "(Drop) Ожидает ТТН",
+                "color": "#856915"
+            },
+            "timestamp": 1663799818000
+        },
+        {
+            "id": 3764,
+            "statusId": 7,
+            "add_order": "2022-09-21T22:36:58.246Z",
+            "status": {
+                "name": "Отправлен",
+                "color": "#e2d317"
+            },
+            "timestamp": 1663799818000
+        },
+        {
+            "id": 3698,
+            "statusId": 18,
+            "add_order": "2022-09-21T21:36:57.942Z",
+            "status": {
+                "name": "(Drop) Выкуплен",
+                "color": "#68a6d7"
+            },
+            "timestamp": 1663796217000
+        },
+        {
+            "id": 3677,
+            "statusId": 13,
+            "add_order": "2022-09-21T22:36:57.846Z",
+            "status": {
+                "name": "Возврат (получен)",
+                "color": "#860101"
+            },
+            "timestamp": 1663799817000
+        },
+        {
+            "id": 3565,
+            "statusId": 17,
+            "add_order": "2022-09-21T22:36:57.307Z",
+            "status": {
+                "name": "(Drop) Отправлен",
+                "color": "#d7a214"
+            },
+            "timestamp": 1663799817000
+        },
+        {
+            "id": 3496,
+            "statusId": 16,
+            "add_order": "2022-09-21T21:36:56.978Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663796216000
+        },
+        {
+            "id": 3459,
+            "statusId": 14,
+            "add_order": "2022-09-21T21:36:56.794Z",
+            "status": {
+                "name": "Возврат (завершён)",
+                "color": "#FF0000"
+            },
+            "timestamp": 1663796216000
+        },
+        {
+            "id": 3452,
+            "statusId": 10,
+            "add_order": "2022-09-21T21:36:56.759Z",
+            "status": {
+                "name": "Завершён",
+                "color": "#00CC00"
+            },
+            "timestamp": 1663796216000
+        },
+        {
+            "id": 3403,
+            "statusId": 11,
+            "add_order": "2022-09-21T21:36:56.529Z",
+            "status": {
+                "name": "Возврат",
+                "color": "#da291c"
+            },
+            "timestamp": 1663796216000
+        },
+        {
+            "id": 3262,
+            "statusId": 8,
+            "add_order": "2022-09-21T21:36:55.867Z",
+            "status": {
+                "name": "Выкуплен",
+                "color": "#64a727"
+            },
+            "timestamp": 1663796215000
+        },
+        {
+            "id": 3130,
+            "statusId": 7,
+            "add_order": "2022-09-21T21:36:55.218Z",
+            "status": {
+                "name": "Отправлен",
+                "color": "#e2d317"
+            },
+            "timestamp": 1663796215000
+        },
+        {
+            "id": 3127,
+            "statusId": 11,
+            "add_order": "2022-09-21T22:36:55.203Z",
+            "status": {
+                "name": "Возврат",
+                "color": "#da291c"
+            },
+            "timestamp": 1663799815000
+        },
+        {
+            "id": 3055,
+            "statusId": 3,
+            "add_order": "2022-09-21T21:36:54.855Z",
+            "status": {
+                "name": "Принят",
+                "color": "#91d100"
+            },
+            "timestamp": 1663796214000
+        },
+        {
+            "id": 2936,
+            "statusId": 13,
+            "add_order": "2022-09-21T22:36:54.289Z",
+            "status": {
+                "name": "Возврат (получен)",
+                "color": "#860101"
+            },
+            "timestamp": 1663799814000
+        },
+        {
+            "id": 2904,
+            "statusId": 20,
+            "add_order": "2022-09-21T22:36:54.135Z",
+            "status": {
+                "name": "(Drop) Возврат",
+                "color": "#a82451"
+            },
+            "timestamp": 1663799814000
+        },
+        {
+            "id": 2877,
+            "statusId": 18,
+            "add_order": "2022-09-21T21:36:54.011Z",
+            "status": {
+                "name": "(Drop) Выкуплен",
+                "color": "#68a6d7"
+            },
+            "timestamp": 1663796214000
+        },
+        {
+            "id": 2600,
+            "statusId": 6,
+            "add_order": "2022-09-21T21:36:52.624Z",
+            "status": {
+                "name": "Передан",
+                "color": "#c6b922"
+            },
+            "timestamp": 1663796212000
+        },
+        {
+            "id": 2399,
+            "statusId": 4,
+            "add_order": "2022-09-21T21:36:51.663Z",
+            "status": {
+                "name": "Отказ",
+                "color": "#fd7777"
+            },
+            "timestamp": 1663796211000
+        },
+        {
+            "id": 2322,
+            "statusId": 12,
+            "add_order": "2022-09-21T22:36:51.285Z",
+            "status": {
+                "name": "Возврат (прибыл)",
+                "color": "#b52318"
+            },
+            "timestamp": 1663799811000
+        },
+        {
+            "id": 2214,
+            "statusId": 15,
+            "add_order": "2022-09-21T21:36:50.747Z",
+            "status": {
+                "name": "(Drop) Ожидает ТТН",
+                "color": "#856915"
+            },
+            "timestamp": 1663796210000
+        },
+        {
+            "id": 2039,
+            "statusId": 9,
+            "add_order": "2022-09-21T21:36:49.887Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663796209000
+        },
+        {
+            "id": 1659,
+            "statusId": 7,
+            "add_order": "2022-09-21T21:36:47.981Z",
+            "status": {
+                "name": "Отправлен",
+                "color": "#e2d317"
+            },
+            "timestamp": 1663796207000
+        },
+        {
+            "id": 1627,
+            "statusId": 7,
+            "add_order": "2022-09-21T22:36:47.824Z",
+            "status": {
+                "name": "Отправлен",
+                "color": "#e2d317"
+            },
+            "timestamp": 1663799807000
+        },
+        {
+            "id": 1559,
+            "statusId": 2,
+            "add_order": "2022-09-21T21:36:47.491Z",
+            "status": {
+                "name": "Новый",
+                "color": "#515151"
+            },
+            "timestamp": 1663796207000
+        },
+        {
+            "id": 1504,
+            "statusId": 7,
+            "add_order": "2022-09-21T22:36:47.214Z",
+            "status": {
+                "name": "Отправлен",
+                "color": "#e2d317"
+            },
+            "timestamp": 1663799807000
+        },
+        {
+            "id": 1466,
+            "statusId": 9,
+            "add_order": "2022-09-21T22:36:47.029Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663799807000
+        },
+        {
+            "id": 1444,
+            "statusId": 14,
+            "add_order": "2022-09-21T21:36:46.921Z",
+            "status": {
+                "name": "Возврат (завершён)",
+                "color": "#FF0000"
+            },
+            "timestamp": 1663796206000
+        },
+        {
+            "id": 1301,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:36:46.209Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799806000
+        },
+        {
+            "id": 1189,
+            "statusId": 9,
+            "add_order": "2022-09-21T21:36:45.637Z",
+            "status": {
+                "name": "Деньги получены",
+                "color": "#2c8b11"
+            },
+            "timestamp": 1663796205000
+        },
+        {
+            "id": 1130,
+            "statusId": 17,
+            "add_order": "2022-09-21T22:36:45.328Z",
+            "status": {
+                "name": "(Drop) Отправлен",
+                "color": "#d7a214"
+            },
+            "timestamp": 1663799805000
+        },
+        {
+            "id": 1124,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:36:45.296Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799805000
+        },
+        {
+            "id": 964,
+            "statusId": 12,
+            "add_order": "2022-09-21T22:36:44.500Z",
+            "status": {
+                "name": "Возврат (прибыл)",
+                "color": "#b52318"
+            },
+            "timestamp": 1663799804000
+        },
+        {
+            "id": 903,
+            "statusId": 16,
+            "add_order": "2022-09-21T22:36:44.196Z",
+            "status": {
+                "name": "(Drop) Присвоена ТТН",
+                "color": "#c7a95c"
+            },
+            "timestamp": 1663799804000
+        },
+        {
+            "id": 535,
+            "statusId": 13,
+            "add_order": "2022-09-21T22:36:42.237Z",
+            "status": {
+                "name": "Возврат (получен)",
+                "color": "#860101"
+            },
+            "timestamp": 1663799802000
+        },
+        {
+            "id": 529,
+            "statusId": 21,
+            "add_order": "2022-09-21T22:36:42.209Z",
+            "status": {
+                "name": "(Drop) Возврат (учтён)",
+                "color": "#d90d53"
+            },
+            "timestamp": 1663799802000
+        },
+        {
+            "id": 310,
+            "statusId": 12,
+            "add_order": "2022-09-21T22:36:41.093Z",
+            "status": {
+                "name": "Возврат (прибыл)",
+                "color": "#b52318"
+            },
+            "timestamp": 1663799801000
+        },
+        {
+            "id": 91,
+            "statusId": 8,
+            "add_order": "2022-09-21T21:36:39.943Z",
+            "status": {
+                "name": "Выкуплен",
+                "color": "#64a727"
+            },
+            "timestamp": 1663796199000
+        },
+        {
+            "id": 17,
+            "statusId": 17,
+            "add_order": "2022-09-21T21:36:39.504Z",
+            "status": {
+                "name": "(Drop) Отправлен",
+                "color": "#d7a214"
+            },
+            "timestamp": 1663796199000
+        }
+    ],
+    "percent": [
+        {
+            "statusId": 2,
+            "count": "3.1"
+        },
+        {
+            "statusId": 3,
+            "count": "11.3"
+        },
+        {
+            "statusId": 4,
+            "count": "6.2"
+        },
+        {
+            "statusId": 5,
+            "count": "3.1"
+        },
+        {
+            "statusId": 6,
+            "count": "3.1"
+        },
+        {
+            "statusId": 7,
+            "count": "5.2"
+        },
+        {
+            "statusId": 8,
+            "count": "6.2"
+        },
+        {
+            "statusId": 9,
+            "count": "8.2"
+        },
+        {
+            "statusId": 10,
+            "count": "2.1"
+        },
+        {
+            "statusId": 11,
+            "count": "7.2"
+        },
+        {
+            "statusId": 12,
+            "count": "4.1"
+        },
+        {
+            "statusId": 13,
+            "count": "7.2"
+        },
+        {
+            "statusId": 14,
+            "count": "6.2"
+        },
+        {
+            "statusId": 15,
+            "count": "3.1"
+        },
+        {
+            "statusId": 16,
+            "count": "10.3"
+        },
+        {
+            "statusId": 17,
+            "count": "4.1"
+        },
+        {
+            "statusId": 18,
+            "count": "2.1"
+        },
+        {
+            "statusId": 19,
+            "count": "2.1"
+        },
+        {
+            "statusId": 20,
+            "count": "2.1"
+        },
+        {
+            "statusId": 21,
+            "count": "3.1"
+        }
+    ]
+}

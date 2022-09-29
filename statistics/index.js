@@ -1,6 +1,8 @@
 'use strict';
 
 const data = require('./data.json');
+const data2 = require('./data2.json');
+
 
 /**
  * 
@@ -9,7 +11,7 @@ const data = require('./data.json');
  * @param {'Days' | 'Hours'} roundTo To which unit round timestamps
  * @returns 
  */
-const calcStatistics = ({ orders, percent }, roundTo = 'Days') => {
+const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) => {
     //1000ms in 1s, 60s in 1m, 60m in 1h
     const msInHour = 1000 * 60 * 60;
     //24h in 1d
@@ -17,7 +19,9 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days') => {
     const stripDays = (ms) => Math.floor(ms / msInDay) * msInDay;
     const stripHours = (ms) => {
         let newMs = Math.floor(ms / msInHour) * msInHour;
-        if((newMs % msInDay) / msInHour === 0) newMs+=msInHour;
+        let hoursInThisDay = (newMs % msInDay) / msInHour + timeZone;
+        if (hoursInThisDay === 0) newMs += msInHour;
+        if (hoursInThisDay === 24) newMs -= msInHour;
         return newMs;
     };
 
@@ -116,7 +120,7 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days') => {
     return values;
 };
 
-const result = calcStatistics(data);
+const result = calcStatistics(data2, 'Hours');
 
 console.table(result);
 
