@@ -20,8 +20,7 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) =>
     const stripHours = (ms) => {
         let newMs = Math.floor(ms / msInHour) * msInHour;
         let hoursInThisDay = (newMs % msInDay) / msInHour + timeZone;
-        if (hoursInThisDay === 0) newMs += msInHour;
-        if (hoursInThisDay === 24) newMs -= msInHour;
+        if (hoursInThisDay === 0 || hoursInThisDay === 24) newMs += msInHour;
         return newMs;
     };
 
