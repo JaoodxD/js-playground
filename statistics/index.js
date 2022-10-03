@@ -57,12 +57,9 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) =>
     filtered.forEach((statUnit) => dic[statUnit] ? dic[statUnit].count++ : dic[statUnit] = statUnit);
 
     // console.table(dic);
-    // console.log(Object.entries(dic).length);
 
     const statuses = {};
-
     let i = 1;
-
     const marker = {
         enabled: true,
         radius: 4,
@@ -91,7 +88,6 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) =>
         statuses[value.status.name].count += value.count;
 
     }
-
     // console.table(statuses);
 
     const values = Object.values(statuses);
@@ -114,13 +110,8 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) =>
         marker
     });
 
-    // console.table(timeStamps);
     all.data = Object.values(timeStamps).sort(({ x: x1 }, { x: x2 }) => x2 - x1);
-
-    // console.dir(all, { depth: null });
-
     values.unshift(all);
-
     // console.table(values);
     return values;
 };
