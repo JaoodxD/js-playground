@@ -23,9 +23,6 @@ const findMaxSpot = (field) => {
                 || (x1 === x2 + 1 && y1 === y2)
                 || (x1 === x2 - 1 && y1 === y2);
         }
-        [Symbol.toPrimitive] = function () {
-            return `(${this.x}, ${this.y})`;
-        }
     }
     /**
      * @type {Array.<Array.<Point>>}
@@ -35,7 +32,8 @@ const findMaxSpot = (field) => {
         for (let j = 0; j < matrix.length; j++) {
             if (matrix[i][j] === 'X') {
                 const newSpot = new Point(i, j);
-                const existingSpot = oilSpots.find((spot) => spot.some((point) => point.collideWith(newSpot)));
+                const existingSpot = oilSpots.find((spot) => spot.some((point) =>
+                    point.collideWith(newSpot)));
                 if (existingSpot) existingSpot.push(newSpot);
                 else oilSpots.push([newSpot]);
             }
@@ -46,5 +44,5 @@ const findMaxSpot = (field) => {
 
 };
 
-const res = findMaxSpot(field);
-console.log({ res });
+const maxSpot = findMaxSpot(field);
+console.log({ maxSpot });
