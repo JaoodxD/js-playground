@@ -30,10 +30,15 @@ const findMaxSpot = (field) => {
     const oilSpots = [];
     for (let i = 0; i < matrix.length; i++) {
         for (let j = 0; j < matrix.length; j++) {
+            //if oil spot was found
             if (matrix[i][j] === 'X') {
+                //create instance of 2d point
                 const newSpot = new Point(i, j);
+                //check if found spot collides with any previously spotted
                 const existingSpot = oilSpots.find((spot) => spot.some((point) =>
                     point.collideWith(newSpot)));
+                //if we find collision we add newely created point to it
+                //else we create new spot with this point
                 if (existingSpot) existingSpot.push(newSpot);
                 else oilSpots.push([newSpot]);
             }
