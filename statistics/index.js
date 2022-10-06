@@ -84,7 +84,7 @@ const calcStatistics = ({ orders, percent }, roundTo = 'Days', timeZone = +3) =>
             x: value.timestamp,
             marker
         });
-        statuses[value.status.name].data.sort(({x:x1},{x:x2}) => x2 - x1);
+        statuses[value.status.name].data.sort(({ x: x1 }, { x: x2 }) => x2 - x1);
         statuses[value.status.name].count += value.count;
 
     }
