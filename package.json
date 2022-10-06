@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/JaoodxD/js-playground/issues"
   },
-  "homepage": "https://github.com/JaoodxD/js-playground#readme"
+  "homepage": "https://github.com/JaoodxD/js-playground#readme",
+  "dependencies": {
+    "moment": "^2.29.4"
+  }
 }
