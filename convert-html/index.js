@@ -4,5 +4,5 @@ const html = `Почтовая служба получила посылку<br><
 
 const text = strip(html);
 console.log(text);
-const newHtml = wrap(text);
+const newHtml = wrap(text.join('\n'));
 console.log(html === newHtml);
