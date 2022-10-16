@@ -7,13 +7,14 @@ const COUNTRIES = {
 };
 const DEFAULT_COUNTRY = 'GLOBAL';
 
-const normalizeCountry = country =>
+const getCountryCode = country =>
     Object.entries(COUNTRIES)
         .find(([, nameVariants]) =>
             nameVariants.includes(country))
-    ?.[0] ?? DEFAULT_COUNTRY;
+    ?.[0];
 
+const normalize = country => getCountryCode(country) ?? DEFAULT_COUNTRY;
 const inputs = [
     'UA', 'Казахстан', 'asdasd'
 ];
-console.table([inputs, inputs.map(normalizeCountry)]);
+console.table([inputs, inputs.map(normalize)]);
