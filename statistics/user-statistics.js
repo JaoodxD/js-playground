@@ -55,4 +55,8 @@ const calcStatistics = (
     return tsList;
 };
 
-const res = calcStatistics(data);
+const res = calcStatistics(data, {
+    roundTo: 'Days',
+    fields: ['timestamp', 'acceptedByUserId'],
+    timeZone: +3
+});
