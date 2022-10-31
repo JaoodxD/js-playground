@@ -34,9 +34,11 @@ const calcStatistics = (
         }
 ) => {
     const processor = getRounder(roundTo);
-    orders.forEach((order) => order.timestamp = processor(order.timestamp, timeZone));
+    const ordersWithRoundedTimestamps = orders.map((order) =>
+        ({ ...order, timestamp: processor(order.timestamp, timeZone) }));
 
-    const statUnits = orders.map((order) => new StatUnit(order, fields));
+    const statUnits = ordersWithRoundedTimestamps.map((order) => new StatUnit(order, fields));
+    
     const dic = {};
     statUnits.forEach((statUnit) =>
         dic[statUnit] ? dic[statUnit].count++ : dic[statUnit] = statUnit);
@@ -47,23 +49,23 @@ const calcStatistics = (
             .sort((a, b) => a - b)
     );
 
-    const tsList = [...uniqueTimestamps].map((ms) => ({
+    const timestampsList = [...uniqueTimestamps].map((ms) => ({
         line: 0,
         date: formatDate(ms, roundTo),
         name: ms
     }));
     Object.values(dic).forEach(({ groupingField: [timestampFieldName, fieldName], obj, count }) => {
         const timestampValue = obj[timestampFieldName];
-        const column = tsList.find(({ name }) => name === timestampValue);
+        const column = timestampsList.find(({ name }) => name === timestampValue);
         const fieldValue = obj[fieldName];
         if (column) {
             column[fieldValue] = count;
             column['line'] += count;
         }
     });
-    console.table(tsList);
+    console.table(timestampsList);
 
-    return tsList;
+    return timestampsList;
 };
 
 const res = calcStatistics(data, {
