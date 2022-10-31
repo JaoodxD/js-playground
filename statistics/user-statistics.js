@@ -5,10 +5,21 @@ const data = require('./dataUsers.json');
 const { StatUnit, formatDate, getRounder } = require('./utils');
 
 /**
+ * @typedef {Object} StatOptions
+ * @property {'Days' | 'Hours'} roundTo
+ * @property {number} timeZone
+ * @property {string[]} fields
  * 
- * @param {{orders:any[], percent:any[]}} orders Orders info
- * @param {{roundTo: 'Days' | 'Hours', timeZone: number, fields: Array<string>}} options
- * @returns 
+ * @typedef {Object} ServerStatistics
+ * @property {any[]} orders
+ * @property {any[]} percent
+ */
+
+
+/**
+ * 
+ * @param {ServerStatistics} orders Orders info
+ * @param {StatOptions} options
  */
 const calcStatistics = (
     { orders },
