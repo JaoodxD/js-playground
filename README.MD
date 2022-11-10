@@ -1,5 +1,5 @@
 # SandBox  
-My sandbox where I perform some experiments over javascript.  
+My sandbox where I'm just doing some experiments with javascript.  
 # CodeWars  
 Also I have [CodeWars](https://www.codewars.com/) account  
 [![CodeWars Account](https://www.codewars.com/users/Jaood96/badges/small)](https://www.codewars.com/users/Jaood96)  
