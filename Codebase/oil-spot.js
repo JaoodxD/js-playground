@@ -46,8 +46,8 @@ const findMaxSpot = (field) => {
     }
     //as a result we have array of vectors
     //every vector contains coordinates of related oil spots 
-    console.log(oilSpots.map(x => x.length));
-    return oilSpots.map(x => x.length).sort((a, b) => b - a)[0];
+    console.log(oilSpots.map((x) => x.length));
+    return oilSpots.map((x) => x.length).sort((a, b) => b - a)[0];
 
 };
 

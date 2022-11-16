@@ -5,7 +5,7 @@ const arr = [
     [[6, [7]]]
 ];
 
-const flat = arr => {
+const flat = (arr) => {
     const temp = [];
     const spread = (element) => {
         element.forEach(x => typeof x === 'number' ? temp.push(x) : spread(x));

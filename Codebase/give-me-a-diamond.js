@@ -3,7 +3,7 @@ const diamond = (n) => {
     let line = '*'.repeat(n);
     let builder = [line];
     do {
-        line = line.replace(/(?<=^| )\*|\*(?=$| )/gm, _ => ' ').trimEnd();
+        line = line.replace(/(?<=^| )\*|\*(?=$| )/gm, () => ' ').trimEnd();
         builder = [line, ...builder, line];
     } while ((n -= 2) > 1);
     builder.push('');

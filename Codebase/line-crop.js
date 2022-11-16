@@ -5,8 +5,8 @@ const blocks = [
 
 const maxLength = 10;
 
-const printBlock = len => "#".repeat(len);
-const build = arr => arr.map(printBlock);
+const printBlock = (len) => "#".repeat(len);
+const build = (arr) => arr.map(printBlock);
 
 let acc = 0;
 const filtered = blocks.filter(x => {

@@ -26,5 +26,5 @@ const callback = Dispatcher();
 
 // context#4
 {
-    callback({ id: [1,3,6,8,10], order: [['id', 'desc']] });
+    callback({ id: [1, 3, 6, 8, 10], order: [['id', 'desc']] });
 }

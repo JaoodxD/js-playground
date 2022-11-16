@@ -6,7 +6,7 @@ const reader = readline.createInterface({
     output: process.stdout
 });
 
-reader.on('line', line => {
+reader.on('line', (line) => {
     console.log(line);
 })
 reader.on('close', () => reader.close());

@@ -4,7 +4,7 @@ const towerBuilder = (nFloors) => {
     let line = '*'.repeat(baseLen);
     const tower = [];
     tower.unshift(line);
-    while(nFloors--){
+    while (nFloors--) {
         line = line.replace(/(?<=^| )\*|\*(?=$| )/gm, ' ');
         tower.unshift(line);
     }

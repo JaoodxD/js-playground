@@ -6,9 +6,9 @@ const getBaseLog = (base, y) => Math.log(y) / Math.log(base);
 
 const size = Math.floor(getBaseLog(toNumSystem, numberIn10));
 
-const arr = new Array(size + 1).fill(0).map((x, i) => toNumSystem ** i).reverse();
+const arr = new Array(size + 1).fill(0).map((_, i) => toNumSystem ** i).reverse();
 
-const res = arr.map(x => {
+const res = arr.map((x) => {
     const t = Math.floor(temp / x);
     temp -= t * x;
     return t;

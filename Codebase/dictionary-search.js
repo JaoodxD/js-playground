@@ -13,7 +13,7 @@ const getCountryCode = country =>
             nameVariants.includes(country))
     ?.[0];
 
-const normalize = country => getCountryCode(country) ?? DEFAULT_COUNTRY;
+const normalize = (country) => getCountryCode(country) ?? DEFAULT_COUNTRY;
 const inputs = [
     'UA', 'Казахстан', 'asdasd'
 ];

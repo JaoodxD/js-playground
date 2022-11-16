@@ -1,4 +1,4 @@
-const duplicateEncode = word => {
+const duplicateEncode = (word) => {
     word = word.toLowerCase();
     const dic = {};
     word.split('').forEach(ch => {
