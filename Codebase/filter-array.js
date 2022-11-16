@@ -24,7 +24,7 @@ const array = [
     }
 ];
 
-const disabled = [114, 116, 112,118,119,120, 117,115,113];
+const disabled = [111,112,113,114,115];
 console.log(array.length);
 
 const LIMIT = 5;
