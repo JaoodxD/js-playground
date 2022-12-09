@@ -1,4 +1,4 @@
-let config = { message: 'hello' };
+const config = { message: 'hello' };
 const setup = (cfg = config) => ({
     f: () => console.log(cfg.message)
 });
