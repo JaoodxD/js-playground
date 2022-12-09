@@ -57,7 +57,7 @@ setInterval(() => {
 
 }, 1000);
 
-watchFile('./intervals.json', (eventType, filename) => {
+watchFile('./intervals.json', () => {
     // console.log({ eventType, filename });
     delete require.cache[require.resolve('./intervals.json')];
     let json = require('./intervals.json');
