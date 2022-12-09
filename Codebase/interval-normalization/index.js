@@ -11,7 +11,7 @@ const getBoundaries = (sec) => {
 
 const min = () => Math.min(...seconds);
 const max = () => Math.max(...seconds);
-const justify = (n) => n > max() ? max() : n < min() ? min() : n;
+const justify = (n) => n > max() ? max() : n < min() ? min() : ~~n;
 
 const distribution = seconds.reduce((acc, n, i, arr) =>
     acc.set(n, i / (arr.length - 1)),
@@ -46,13 +46,24 @@ const createGradient = (colors) => (x) => {
     return [getColor('r', x), getColor('g', x), getColor('b', x)];
 };
 
+const getTimestampColor = (secs) => {
+    const x = justify(secs);
+    const [low, high] = getBoundaries(x);
+    let normalizedValue = linearInterpolation(f, low, high)(x);
+    const getColor = createGradient(gradientConfig);
+    const color = getColor(normalizedValue)
+        .reduce(
+            (color, channel) =>
+                color + (~~channel).toString(16)
+                    .padStart(2, '0'),
+            "#");
+    return color;
+};
+
 let x = 0.00;
 setInterval(() => {
-    if (x === 1) x = 0;
-    x += 0.05;
-    x = Math.min(x, 1);
-    const gradient = createGradient(gradientConfig);
-    const res = gradient(x).reduce((color, channel) => color + (~~channel).toString(16).padStart(2, '0'), "#");
+    x = ~~(max() * Math.random());
+    const res = getTimestampColor(x);
     console.log('%cTEST', `color: ${res}`, { x, res });
 
 }, 1000);
