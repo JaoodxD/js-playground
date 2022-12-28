@@ -8,12 +8,11 @@ const getLastLetter = (word = '') => word[word.length - 1];
 const testWords = (word1, word2) => getLastLetter(word1) === getFirstLetter(word2);
 // test whether array is valid chain of millipede words
 const testArray = (array) => {
-    let result = true;
     for (let i = 0; i < (array.length - 1); i++) {
         const [word1, word2] = [array[i], array[i + 1]];
-        result &&= testWords(word1, word2);
+        if(!testWords(word1, word2)) return false;
     }
-    return result;
+    return true;
 };
 // fastest way to generate all possible permutations of words
 const permute = (permutation) => {
