@@ -11,7 +11,8 @@ class PaginationDeck {
             this.#deck.pop();
             this.#deck.unshift(element);
         }
-    }
+    };
+
     constructor(pageSize, totalCount) {
         this.#deck = new Array(pageSize).fill(0);
         this.#currentPage = 0;
