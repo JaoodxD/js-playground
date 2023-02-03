@@ -2,6 +2,16 @@ class PaginationDeck {
     #deck = [];
     #currentPage;
     #matcher = {};
+    #pushStrategy = {
+        true: (element) => {
+            this.#deck.shift();
+            this.#deck.push(element);
+        },
+        false: (element) => {
+            this.#deck.pop();
+            this.#deck.unshift(element);
+        }
+    }
     constructor(pageSize, totalCount) {
         this.#deck = new Array(pageSize).fill(0);
         this.#currentPage = 0;
@@ -21,15 +31,14 @@ class PaginationDeck {
     }
 
     #insertElement(element) {
+        const directionOfPush = this.#isNewElementGreaterThanFirst(element);
+        const strategy = this.#pushStrategy[directionOfPush];
+        strategy(element);
+    }
+
+    #isNewElementGreaterThanFirst(newElement) {
         const firstDeckElement = this.#deck[0];
-        if (firstDeckElement < element) {
-            this.#deck.shift();
-            this.#deck.push(element);
-        }
-        else {
-            this.#deck.pop();
-            this.#deck.unshift(element);
-        }
+        return (firstDeckElement < newElement);
     }
 
     #checkForNewPage(element) {
