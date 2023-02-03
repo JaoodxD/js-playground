@@ -46,8 +46,9 @@ class PaginationDeck {
         this.#matcher = Array.from(
             { length: this.#totalCount },
             (_, i) => ~~(i / this.#pageSize)
-        ).reduce((matcher, page) =>
-            (matcher[page] = (matcher[page] || 0) + 1, matcher), {});
+        ).reduce(
+            (matcher, page) =>
+                (matcher[page] = (matcher[page] || 0) + 1, matcher), {});
     }
 
     #insertElement(element) {
