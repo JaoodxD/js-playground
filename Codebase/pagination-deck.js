@@ -32,12 +32,12 @@ class PaginationDeck {
     }
 
     #insertElement(element) {
-        const directionOfPush = this.#isNewElementGreaterThanFirst(element);
+        const directionOfPush = this.#findPushDirection(element);
         const strategy = this.#pushStrategy[directionOfPush];
         strategy(element);
     }
 
-    #isNewElementGreaterThanFirst(newElement) {
+    #findPushDirection(newElement) {
         const firstDeckElement = this.#deck[0];
         return (firstDeckElement < newElement);
     }
