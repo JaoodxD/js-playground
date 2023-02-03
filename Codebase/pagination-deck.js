@@ -85,4 +85,3 @@ paginator.push(1);
 paginator.add();
 paginator.add();
 paginator.add();
-
