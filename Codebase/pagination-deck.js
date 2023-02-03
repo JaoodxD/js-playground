@@ -29,7 +29,6 @@ class PaginationDeck {
 
         const isNewPage = this.#checkForNewPage(element);
         if (isNewPage) this.#currentPage = element;
-        console.log(this.#currentPage);
         return this.#currentPage;
     }
 
