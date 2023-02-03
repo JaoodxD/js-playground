@@ -17,15 +17,21 @@ class PaginationDeck {
 
         const isNewPage = this.#checkForNewPage(element);
         if (isNewPage) this.#currentPage = element;
-
         return this.#currentPage;
     }
 
     #insertElement(element) {
-        this.#deck.shift();
-        this.#deck.push(element);
+        const firstDeckElement = this.#deck[0];
+        if (firstDeckElement < element) {
+            this.#deck.shift();
+            this.#deck.push(element);
+        }
+        else {
+            this.#deck.pop();
+            this.#deck.unshift(element);
+        }
     }
-    
+
     #checkForNewPage(element) {
         const elementsCount = this.#deck.filter((x) => x === element).length;
         const elementsOnPage = this.#matcher[element];
@@ -43,7 +49,5 @@ paginator.push(1);
 paginator.push(2);
 paginator.push(2);
 
-paginator.push(1);
-paginator.push(1);
 paginator.push(1);
 paginator.push(1);
