@@ -11,19 +11,21 @@ class PaginationDeck {
         ).reduce((matcher, page) =>
             (matcher[page] = (matcher[page] || 0) + 1, matcher), {});
     }
+
     push(element) {
         this.#insertElement(element);
 
         const isNewPage = this.#checkForNewPage(element);
         if (isNewPage) this.#currentPage = element;
 
-        console.log(this.#currentPage);
         return this.#currentPage;
     }
+
     #insertElement(element) {
         this.#deck.shift();
         this.#deck.push(element);
     }
+    
     #checkForNewPage(element) {
         const elementsCount = this.#deck.filter((x) => x === element).length;
         const elementsOnPage = this.#matcher[element];
