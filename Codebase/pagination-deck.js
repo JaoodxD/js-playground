@@ -1,7 +1,7 @@
 class PaginationDeck {
     #deck = [];
     #currentPage;
-    #totalCount;
+    #totalSize;
     #pageSize;
     #matcher = {};
     #pushStrategy = {
@@ -14,14 +14,25 @@ class PaginationDeck {
             this.#deck.unshift(element);
         }
     };
+    #resizeStrategy = {
+        true: (newSize) => {
+            this.#deck.push(
+                ...new Array(newSize - this.#pageSize)
+                    .fill(this.#deck.at(-1))
+            );
+        },
+        false: (newSize) => {
+            const elementsToRemove = this.#pageSize - newSize;
+            this.#deck.splice(-elementsToRemove, elementsToRemove);
+        }
+    }
 
     constructor(pageSize, totalCount) {
         this.#deck = new Array(pageSize).fill(0);
         this.#currentPage = 0;
-        this.#totalCount = totalCount;
+        this.#totalSize = totalCount;
         this.#pageSize = pageSize;
         this.#recalcMatcher();
-
     }
 
     push(element) {
@@ -32,19 +43,27 @@ class PaginationDeck {
         return this.#currentPage;
     }
 
-    add() {
-        this.#totalCount++;
+    incTotalCount() {
+        this.#totalSize++;
         this.#recalcMatcher();
     }
 
-    remove() {
-        this.#totalCount--;
+    decTotalCount() {
+        this.#totalSize--;
+        this.#recalcMatcher();
+    }
+
+    changePageSize(newSize) {
+        const isDeckGrowing = newSize > this.#pageSize;
+        const resizeMethod = this.#resizeStrategy[isDeckGrowing];
+        resizeMethod(newSize);
+        this.#pageSize = newSize;
         this.#recalcMatcher();
     }
 
     #recalcMatcher() {
         this.#matcher = Array.from(
-            { length: this.#totalCount },
+            { length: this.#totalSize },
             (_, i) => ~~(i / this.#pageSize)
         ).reduce(
             (matcher, page) =>
@@ -71,17 +90,5 @@ class PaginationDeck {
 
 const paginator = new PaginationDeck(4, 10);
 
-paginator.push(1);
-paginator.push(1);
-paginator.push(1);
-paginator.push(1);
-
-paginator.push(2);
-paginator.push(2);
-
-paginator.push(1);
-paginator.push(1);
-
-paginator.add();
-paginator.add();
-paginator.add();
+paginator.changePageSize(5);
+paginator.changePageSize(3);
