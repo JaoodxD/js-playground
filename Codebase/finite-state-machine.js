@@ -1,6 +1,6 @@
-const machine = {
-    state: 'OFF',
-    transitions: {
+class Machine {
+    state = 'OFF';
+    transitions = {
         OFF: {
             press() {
                 this.state = 'ON'
@@ -16,7 +16,7 @@ const machine = {
                 this.state = 'OFF'
             }
         }
-    },
+    };
     dispatch(actionName) {
         const action = this.transitions[this.state][actionName];
         if (action) {
@@ -27,7 +27,7 @@ const machine = {
     }
 };
 
-const flashlight = Object.create(machine);
+const flashlight = new Machine();
 console.log(flashlight.state);
 flashlight.dispatch('press');
 console.log(flashlight.state);
