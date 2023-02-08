@@ -2,6 +2,7 @@ class Action {
     name;
     #do;
     #undo;
+    #canUndo = false;
     constructor(name = 'default name', execMethod = () => { }, undoMethod = () => { }) {
         this.name = name;
         this.#do = execMethod;
@@ -9,9 +10,12 @@ class Action {
     }
     execute() {
         this.#do();
+        this.#canUndo = true;
     }
     undo() {
+        if (!this.#canUndo) return void console.log('Nothing to undo');
         this.#undo();
+        this.#canUndo = false;
     }
 };
 
@@ -23,7 +27,7 @@ const account = new Proxy({ money: 0 }, {
     },
     set(target, key, value) {
         console.log(`Setting ${key} to`, value);
-        if (target[key] + value < 0) return void console.log('Money can\'t be negative number');
+        if (target[key] + value < 0) return void console.log(`Money can't be negative number`);
         target[key] = value;
     }
 })
@@ -37,4 +41,3 @@ const action1 = new Action('Add money', add10UAH, remove10UAH);
 action1.execute();
 action1.undo();
 action1.undo();
-
