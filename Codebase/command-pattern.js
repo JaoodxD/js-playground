@@ -2,20 +2,21 @@ class Action {
     name;
     #do;
     #undo;
-    #canUndo = false;
+    #isExecuted = false;
     constructor(name = 'default name', execMethod = () => { }, undoMethod = () => { }) {
         this.name = name;
         this.#do = execMethod;
         this.#undo = undoMethod;
     }
     execute() {
+        if (this.#isExecuted) return void console.log('Already executed');
         this.#do();
-        this.#canUndo = true;
+        this.#isExecuted = true;
     }
     undo() {
-        if (!this.#canUndo) return void console.log('Nothing to undo');
+        if (!this.#isExecuted) return void console.log('Nothing to undo');
         this.#undo();
-        this.#canUndo = false;
+        this.#isExecuted = false;
     }
 };
 
@@ -36,8 +37,19 @@ const transferMoney = function (amount) {
 };
 const add10UAH = transferMoney.bind(account, 10);
 const remove10UAH = transferMoney.bind(account, -10);
-const action1 = new Action('Add money', add10UAH, remove10UAH);
+const add8UAH = transferMoney.bind(account, 8);
+const remove8UAH = transferMoney.bind(account, -8);
+const action1 = new Action('Payment for drink', add10UAH, remove10UAH);
+const action2 = new Action('Payment for snacks', add8UAH, remove8UAH);
+
+action1.undo(); //fires error on nothing to undo
+action2.undo(); //fires error on nothing to undo
 
 action1.execute();
+action2.execute();
+
 action1.undo();
-action1.undo();
+action2.undo();
+
+action1.undo(); //fires error on second undo
+action2.undo(); //fires error on second undo
