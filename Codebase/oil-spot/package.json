@@ -1,0 +1,12 @@
+{
+  "name": "oil-spot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "node main.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
