@@ -1,26 +1,6 @@
-const field = [
-    'XXXXX  ',
-    '      X',
-    '  XX  X',
-    '      X',
-    '    X  ',
-    ' XX    ',
-    ' XX    ',
-];
-
-const field2 = [
-    'XXXXX  ',
-    'XXXXX  ',
-    '       ',
-    'XX     ',
-    'X      ',
-    'X      ',
-    'XXXXXXX',
-]
-
 const findMaxSpot = (field) => {
     const matrix = field.map((row) => row.split(''));
-    console.table(matrix);
+    // console.table(matrix);
     class Point {
         constructor(x, y) {
             this.x = x;
@@ -56,12 +36,9 @@ const findMaxSpot = (field) => {
     }
     //as a result we have array of vectors
     //every vector contains coordinates of related oil spots 
-    console.log(oilSpots.map((x) => x.length));
+    // console.log(oilSpots.map((x) => x.length));
     return oilSpots.map((x) => x.length).sort((a, b) => b - a)[0];
 
 };
-
-const maxSpot = findMaxSpot(field2);
-console.log({ maxSpot });
 
 module.exports = { findMaxSpot };
