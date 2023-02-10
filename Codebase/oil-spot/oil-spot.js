@@ -8,6 +8,16 @@ const field = [
     ' XX    ',
 ];
 
+const field2 = [
+    'XXXXX  ',
+    'XXXXX  ',
+    '       ',
+    'XX     ',
+    'X      ',
+    'X      ',
+    'XXXXXXX',
+]
+
 const findMaxSpot = (field) => {
     const matrix = field.map((row) => row.split(''));
     console.table(matrix);
@@ -51,5 +61,5 @@ const findMaxSpot = (field) => {
 
 };
 
-const maxSpot = findMaxSpot(field);
+const maxSpot = findMaxSpot(field2);
 console.log({ maxSpot });
