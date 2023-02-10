@@ -63,3 +63,5 @@ const findMaxSpot = (field) => {
 
 const maxSpot = findMaxSpot(field2);
 console.log({ maxSpot });
+
+module.exports = { findMaxSpot };
