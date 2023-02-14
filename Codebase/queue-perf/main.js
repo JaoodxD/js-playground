@@ -5,7 +5,7 @@ const { Queue: Queue2 } = require('./queue2');
 
 const perfTest = () => {
     const queue = new Queue();
-    var sum = 0;
+    let sum = 0;
     const t1 = performance.now();
     for (let i = 0; i < 1_000_000; i++) {
         queue.push(i);
