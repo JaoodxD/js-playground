@@ -17,7 +17,7 @@ class Queue {
     }
 
     shift() {
-        const node = this.#head || this.#tail;
+        const node = this.#head;
         if (!node) return;
         const { value } = node;
         this.#head = this.#head.nextNode;
@@ -28,7 +28,7 @@ class Queue {
     printQueue() {
         this.#printNode(this.#head);
     }
-    
+
     #printNode(node) {
         if (!node) return;
         console.log(node.value)
