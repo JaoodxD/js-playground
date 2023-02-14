@@ -7,14 +7,15 @@ const perfTest = () => {
     const queue = new Queue();
     let sum = 0;
     const t1 = performance.now();
-    for (let i = 0; i < 1_000_000; i++) {
-        queue.push(i);
+    for (let i = 0; i < 100_000; i++) {
+        queue.push(() => i);
     }
-    for (let i = 0; i < 1_000_000; i++) {
-        sum += queue.shift();
+    for (let i = 0; i < 100_000; i++) {
+        sum += queue.shift()();
     }
     const t2 = performance.now();
     console.log(t2 - t1);
+
     return sum;
 };
 
