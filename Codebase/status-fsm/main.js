@@ -4,7 +4,7 @@ const STATUSES = {
     'Передан': 'Передан',
     'Возврат': 'Возврат',
     'Завершён': 'Завершён',
-}
+};
 const reserve = () => console.log('+Резерв');
 const unreserve = () => console.log('-Резерв');
 
@@ -13,6 +13,7 @@ const reverseWriteOff = () => console.log('+Партии');
 
 const assembleOrder = () => console.log('+Собрать заказ');
 const disassembleOrder = () => console.log('-Собрать заказ');
+
 class FiniteStateMachine {
     state = STATUSES.Новый;
     #transitions = {
