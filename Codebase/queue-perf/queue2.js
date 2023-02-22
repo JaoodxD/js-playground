@@ -1,8 +1,7 @@
 class QueueNode {
-    value;
-    nextNode;
     constructor(value) {
         this.value = value;
+        this.nextNode = undefined;
     }
 }
 
@@ -12,27 +11,28 @@ class Queue {
 
     push(value) {
         const newNode = new QueueNode(value);
-        if (!this.#head) return void (this.#head = this.#tail = newNode);
+        if (!this.#head) {
+            this.#head = newNode;
+            this.#tail = newNode;
+            return;
+        }
         this.#tail = this.#tail.nextNode = newNode;
     }
 
     shift() {
         const node = this.#head;
         if (!node) return;
-        const { value } = node;
         this.#head = this.#head.nextNode;
         if (!this.#head) this.#tail = undefined;
-        return value;
+        return node.value;
     }
 
     printQueue() {
-        this.#printNode(this.#head);
-    }
-
-    #printNode(node) {
-        if (!node) return;
-        console.log(node.value)
-        this.#printNode(node.nextNode);
+        let node = this.#head;
+        while (node) {
+            console.log(node.value);
+            node = node.nextNode;
+        }
     }
 }
 
