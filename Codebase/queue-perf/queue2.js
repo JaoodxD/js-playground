@@ -28,11 +28,18 @@ class Queue {
     }
 
     printQueue() {
+        const queue = this.valueOf();
+        console.log(queue);
+    }
+
+    valueOf() {
+        const arr = [];
         let node = this.#head;
         while (node) {
-            console.log(node.value);
+            arr.push(node.value);
             node = node.nextNode;
         }
+        return arr;
     }
 }
 
