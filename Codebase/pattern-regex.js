@@ -5,7 +5,7 @@ const findWordsInBars = (str) => {
     while ((match = regex.exec(str)) !== null) {
         result.push([
             match.index,
-            match.index + match[0].length
+            match.index + match[0].length - 1
         ]);
         
     }
