@@ -3,9 +3,10 @@ const findWordsInBars = (str) => {
     const result = [];
     let match;
     while ((match = regex.exec(str)) !== null) {
+        const { index, 0: { length } } = match;
         result.push([
-            match.index,
-            match.index + match[0].length - 1
+            index,
+            index + length - 1
         ]);
         
     }
