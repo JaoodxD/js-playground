@@ -1,0 +1,13 @@
+{
+  "name": "fe-masters-algo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "quicksort.js",
+  "type": "module",
+  "scripts": {
+    "test": "node quicksort.test.js"
+  },
+  "keywords": [],
+  "author": "Maksym Shenderuk <jaood96@gmail.com>",
+  "license": "ISC"
+}
