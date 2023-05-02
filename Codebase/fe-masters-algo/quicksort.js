@@ -28,5 +28,5 @@ function partition(arr, lo, hi) {
 }
 
 export default function quicksort(arr) {
-  qs(arr);
+  qs(arr, 0, arr.length - 1);
 }
