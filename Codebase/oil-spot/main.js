@@ -6,6 +6,7 @@ const findMaxSpot = (field) => {
             this.x = x;
             this.y = y;
         }
+
         collideWith({ x: x2, y: y2 }) {
             const { x: x1, y: y1 } = this;
             return (x1 === x2 && y1 === y2 + 1)
@@ -25,8 +26,9 @@ const findMaxSpot = (field) => {
                 //create instance of 2d point
                 const newSpot = new Point(i, j);
                 //check if found spot collides with any previously spotted
-                const existingSpot = oilSpots.find((spot) => spot.some((point) =>
-                    point.collideWith(newSpot)));
+                const existingSpot = oilSpots.find((spot) =>
+                    spot.some((point) =>
+                        point.collideWith(newSpot)));
                 //if we find collision we add newely created point to it
                 //else we create new spot with this point
                 if (existingSpot) existingSpot.push(newSpot);
