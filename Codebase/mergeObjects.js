@@ -7,13 +7,14 @@ const mergeStrategy = {
     const { constructor } = Reflect.getPrototypeOf(obj2);
     const obj = new constructor();
 
-    for (const key in obj1) {
+    const fields1 = Object.keys(obj1);
+    const fields2 = Object.keys(obj2);
+    const fields = new Set(fields1.concat(fields2));
+
+    for (const key of fields) {
       obj[key] = merge(obj1[key], obj2[key]);
     }
 
-    for (const key in obj2) {
-      obj[key] = merge(obj1[key], obj2[key]);
-    }
     return obj;
   }
 };
