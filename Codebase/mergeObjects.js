@@ -25,6 +25,7 @@ const getAction = (value) =>
     : mergeStrategy.primitive;
 
 const merge = (v1, v2) => getAction(v2)(v1, v2);
+const multiMerge = (...values) => values.reduce((acc, v) => merge(acc, v));
 
 const obj1 = {
   max: 'test',
@@ -54,3 +55,10 @@ const obj2 = {
 const newObj = merge(obj1, obj2);
 
 console.dir({ obj1, obj2, newObj }, { depth: null });
+
+
+const arr1 = [1, 2, 3, 4, 5];
+const arr2 = { 7: 0x45 };
+const arr3 = [];
+
+console.dir(multiMerge(arr1, arr2, arr3));
