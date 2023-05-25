@@ -1,8 +1,5 @@
 const mergeStrategy = {
   default: (a, b) => b ?? a,
-  number: (a, b) => b ?? a,
-  string: (a, b) => b ?? a,
-  boolean: (a, b) => b ?? a,
   object: (obj1, obj2) => {
     if (!obj1) return merge(obj2, obj2);
     if (!obj2) return merge(obj1, obj1);
