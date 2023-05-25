@@ -4,7 +4,8 @@ const copyStrategy = {
   'number': (n) => n,
   'string': (str) => str,
   'object': function (obj) {
-    const newObj = {};
+    const prototype = Reflect.getPrototypeOf(obj);
+    const newObj = new prototype.constructor();
 
     for (const key in obj) {
       const type = typeof obj[key];
@@ -16,7 +17,7 @@ const copyStrategy = {
     return newObj;
   },
   'function': (fn) => {
-    console.log({ fn:fn.toString() });
+    console.log({ fn: fn.toString() });
     return fn;
   }
 };
@@ -30,6 +31,7 @@ const obj = {
   c: {
     cc: 'hello'
   },
+  d: [1,3,5],
   hello() { console.log('hello, world') }
 };
 
