@@ -17,7 +17,10 @@ const mergeStrategy = {
     return obj;
   }
 };
-const getAction = (value) => mergeStrategy[typeof value] ?? mergeStrategy.default;
+const getAction = (value) =>
+  typeof value === 'object'
+    ? mergeStrategy.object
+    : mergeStrategy.default;
 const merge = (v1, v2) => getAction(v2)(v1, v2);
 
 const obj1 = {
