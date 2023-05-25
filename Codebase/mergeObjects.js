@@ -1,5 +1,5 @@
 const mergeStrategy = {
-  default: (a, b) => b ?? a,
+  primitive: (a, b) => b ?? a,
   object: (obj1, obj2) => {
     if (!obj1) return merge(obj2, obj2);
     if (!obj2) return merge(obj1, obj1);
@@ -20,7 +20,7 @@ const mergeStrategy = {
 const getAction = (value) =>
   typeof value === 'object'
     ? mergeStrategy.object
-    : mergeStrategy.default;
+    : mergeStrategy.primitive;
 const merge = (v1, v2) => getAction(v2)(v1, v2);
 
 const obj1 = {
