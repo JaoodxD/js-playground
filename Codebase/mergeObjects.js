@@ -1,6 +1,6 @@
 const mergeStrategy = {
-  primitive: (a, b) => b ?? a,
-  object: (obj1, obj2) => {
+  primitive(a, b) { return b ?? a },
+  object(obj1, obj2) {
     if (!obj1) return merge(obj2, obj2);
     if (!obj2) return merge(obj1, obj1);
 
