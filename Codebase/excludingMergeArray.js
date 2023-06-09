@@ -1,12 +1,11 @@
-const defaultValues = [1, 2, 3];
+const group = [1, 4, 5];
+const user = [1, 4, 5, 6];
 
-const result = [1, 2, 4];
+const expect = [1, 4, 5, 6];
 
-const diff = [3, 4];
-
-const realDiff = defaultValues
-  .concat(result)
+const result = group
+  .concat(user)
   .filter((x) =>
-    !(defaultValues.includes(x) && result.includes(x)));
+    !(group.includes(x) && user.includes(x)));
 
-console.table({ defaultValues, result, expected: diff, realDiff });
+console.log({ group, user, result });
