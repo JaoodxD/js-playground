@@ -13,7 +13,7 @@ const mergeStrategy = {
   objectsArray(arr1, arr2) {
     const arr = [];
     for (const obj of arr1) {
-      const similar = arr2.find(({ id }) => obj.id === id);
+      const similar = arr2.find(({ name }) => obj.name === name);
       if (!similar) {
         arr.push(obj);
         continue;
@@ -22,7 +22,7 @@ const mergeStrategy = {
       if (temp) arr.push(temp)
     }
     for (const obj of arr2) {
-      const similar = arr1.find(({ id }) => obj.id === id);
+      const similar = arr1.find(({ name }) => obj.name === name);
       if (!similar) arr.push(obj);
     }
     return arr;
