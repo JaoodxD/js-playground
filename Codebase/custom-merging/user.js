@@ -31,8 +31,8 @@ module.exports = {
       },
       contact: {
         rows: [
-          { id: 3, name: 'asdasd', show: true },
-          { id: 2, name: 'department', show: true },
+          { name: 'asdasd', show: true },
+          { name: 'department', show: true },
         ],
         show: true
       }
