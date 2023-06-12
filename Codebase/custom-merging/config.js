@@ -8,7 +8,8 @@ class Config {
   }
 
   diff(cfgObj) {
-    const newCfg = merge(this.#config, cfgObj);
+    const obj2 = cfgObj instanceof Config ? cfgObj.toJSON() : cfgObj;
+    const newCfg = merge(this.#config, obj2);
     return new Diff(newCfg);
   }
 
@@ -16,7 +17,7 @@ class Config {
     return new Config;
   }
 
-  toPlainObject() {
+  toJSON() {
     return this.#config;
   }
 }
@@ -24,11 +25,16 @@ class Config {
 class Diff {
   #configDiff;
   constructor(cfgDiff) {
-    this.#configDiff = cfgDiff;
+    if (cfgDiff instanceof Config) this.#configDiff = cfgDiff.toJSON();
+    else this.#configDiff = cfgDiff;
   }
 
   glue(config) {
     return config.glue(this.#configDiff);
+  }
+
+  toJSON() {
+    return this.#configDiff;
   }
 }
 
