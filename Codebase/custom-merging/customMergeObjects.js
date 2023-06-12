@@ -26,11 +26,6 @@ const mergeStrategy = {
       if (!similar) arr.push(obj);
     }
     return arr;
-    /* return arr1.concat(arr2).filter((x) => {
-      const arr1Contains = arr1.some(({ id }) => id === x.id);
-      const arr2Contains = arr2.some(({ id }) => id === x.id);
-      return (arr1Contains !== arr2Contains);
-    }); */
   },
 
   timestampedObject(obj1, obj2 = {}) {
