@@ -31,3 +31,7 @@ class Diff {
     return config.glue(this.#configDiff);
   }
 }
+
+module.exports = {
+  Config, Diff
+}
