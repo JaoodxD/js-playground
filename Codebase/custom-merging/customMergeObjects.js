@@ -4,21 +4,33 @@ const mergeStrategy = {
   },
 
   primitiveArray(arr1, arr2 = []) {
-    const filtered = arr1.concat(arr2).filter((x) => {
-      if (arr1.includes(x) !== arr2.includes(x)) return true;
-      return false;
-    });
-    if (!filtered.length) return undefined;
+    const filtered = arr1.concat(arr2).filter((x) =>
+      arr1.includes(x) !== arr2.includes(x));
+    if (!filtered.length) return;
     return filtered;
   },
 
   objectsArray(arr1, arr2) {
-    return arr1.concat(arr2).filter((x) => {
+    const arr = [];
+    for (const obj of arr1) {
+      const similar = arr2.find(({ id }) => obj.id === id);
+      if (!similar) {
+        arr.push(obj);
+        continue;
+      }
+      const temp = this.object(obj, similar);
+      if (temp) arr.push(temp)
+    }
+    for (const obj of arr2) {
+      const similar = arr1.find(({ id }) => obj.id === id);
+      if (!similar) arr.push(obj);
+    }
+    return arr;
+    /* return arr1.concat(arr2).filter((x) => {
       const arr1Contains = arr1.some(({ id }) => id === x.id);
       const arr2Contains = arr2.some(({ id }) => id === x.id);
-      if (arr1Contains !== arr2Contains) return true;
-      return false;
-    });
+      return (arr1Contains !== arr2Contains);
+    }); */
   },
 
   timestampedObject(obj1, obj2 = {}) {
@@ -31,7 +43,6 @@ const mergeStrategy = {
   object(obj1, obj2) {
     if (!obj1) return merge(obj2, obj2);
     if (!obj2) return merge(obj1, obj1);
-
     const { constructor } = Reflect.getPrototypeOf(obj2);
     const obj = new constructor();
 
@@ -64,76 +75,4 @@ const getType = (value) => {
 
 const merge = (v1, v2) => mergeStrategy[getType(v1)](v1, v2);
 
-const arr1 = [{ id: 1, name: 'UA' }, { id: 2, name: 'KZ' }];
-const arr2 = [{ id: 2, name: 'KZ' }, { id: 3, name: '-=xXxD1M@S1KxXx=-' }];
-
-const result = merge(arr1, arr2);
-console.log({ result });
-
-const groupCfg = {
-  countries: [1, 2, 3],
-  statuses: {
-    value: [10, 20, 30],
-    time: 1000
-  },
-  departments: {
-    value: [8, 9, 10],
-    time: 5000
-  },
-  analytics: {
-    show: true,
-    time: 10000
-  },
-  cardOrder: {
-    time: 10000,
-    show: true,
-    settings: {
-      comment: {
-        show: true
-      },
-      contact: {
-        rows: [
-          { id: 1, name: 'country', show: true },
-          { id: 2, name: 'department', show: true },
-        ],
-        show: true
-      }
-    }
-  }
-};
-
-const userCfg = {
-  countries: [1, 2, 3],
-  statuses: {
-    value: [10, 40],
-    time: 1001
-  },
-  departments: {
-    value: [7, 8],
-    time: 4000
-  },
-  analytics: {
-    show: true,
-    time: 18000
-  },
-  cardOrder: {
-    time: 18000,
-    show: true,
-    settings: {
-      comment: {
-        show: true
-      },
-      contact: {
-        rows: [
-          { id: 3, name: 'asdasd', show: true },
-          { id: 2, name: 'department', show: true },
-        ],
-        show: true
-      }
-    }
-  }
-
-};
-
-
-console.dir({ groupCfg, userCfg, result: merge(groupCfg, userCfg) }, { depth: null });
+module.exports = merge;
