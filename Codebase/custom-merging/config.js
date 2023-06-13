@@ -1,36 +1,30 @@
 const mergeStrategy = {
   primitive(value1, value2) {
-    return value1 !== value2 ? value2 ?? value1 : undefined;
+    return value2 ?? value1;
   },
 
   primitiveArray(arr1, arr2 = []) {
-    const filtered = arr1.concat(arr2).filter((x) =>
-      arr1.includes(x) !== arr2.includes(x));
-    if (!filtered.length) return;
-    return filtered;
+    const concated = arr1.filter((x) => !arr2.includes(x)).concat(arr2);
+    return concated;
   },
 
   objectsArray(arr1, arr2) {
-    const arr = [];
-    for (const obj of arr1) {
-      const similar = arr2.find(({ name }) => obj.name === name);
-      if (!similar) {
-        arr.push(obj);
-        continue;
-      }
-      const temp = this.object(obj, similar);
-      if (temp) arr.push(temp)
-    }
-    for (const obj of arr2) {
-      const similar = arr1.find(({ name }) => obj.name === name);
-      if (!similar) arr.push(obj);
-    }
-    return arr;
+    const unique1 = arr1.filter((x) => !arr2.some(({ name }) => name === x.name));
+    const unique2 = arr2.filter((x) => !arr1.some(({ name }) => name === x.name));
+
+    const common = arr1.filter((x) => arr2.some(({ name }) => name === x.name));
+    const merged = common.map((obj) => {
+      const commonObj = arr2.find((({ name }) => name === obj.name));
+      const merged = merge(obj, commonObj);
+      return merged;
+    });
+
+    return unique1.concat(merged, unique2);
   },
 
   timestampedObject(obj1, obj2 = {}) {
     const { time: t1 } = obj1;
-    const { time: t2 } = obj2;
+    const { time: t2 = 0 } = obj2;
     if (t1 > t2) return this.object(obj1, {});
     return this.object(obj1, obj2);
   },
@@ -47,9 +41,8 @@ const mergeStrategy = {
 
     for (const key of fields) {
       const mergedValue = merge(obj1[key], obj2[key]);
-      if (mergedValue !== undefined) obj[key] = mergedValue;
+      obj[key] = mergedValue;
     }
-    if (!Object.keys(obj).length) return undefined;
     return obj;
   }
 };
