@@ -1,5 +1,4 @@
 const { Config, Diff } = require('./config');
-const merge = require('./customMergeObjects');
 
 
 const obj1 = {
@@ -17,4 +16,3 @@ const cfg2 = new Config(obj2);
 const diff = cfg1.diff(cfg2);
 
 console.log(cfg1.toJSON(), cfg2.toJSON(), diff.toJSON());
-console.log(merge(obj1, obj2));
