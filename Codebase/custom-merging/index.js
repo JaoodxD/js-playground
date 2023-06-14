@@ -1,4 +1,4 @@
-const { Config, Diff } = require('./config');
+const { Config } = require('./config');
 
 
 const obj1 = {
@@ -6,26 +6,18 @@ const obj1 = {
   order: {
     settings: {
       address: {
-        show: true,
         swap: false
       }
     },
-    show: true,
     time: 1437
   },
   cardOrder: {
     time: 20000,
-    show: true,
     settings: {
       comment: {
-        show: false
       },
       contact: {
-        rows: [
-          { name: 'country', show: true },
-          { name: 'department', show: true },
-        ],
-        show: true
+        rows: ['country', 'department']
       }
     }
   }
@@ -36,26 +28,18 @@ const obj2 = {
   order: {
     settings: {
       address: {
-        show: false,
         swap: false
       }
     },
-    show: true,
     time: 1438
   },
   cardOrder: {
     time: 18000,
-    show: true,
     settings: {
       comment: {
-        show: true
       },
       contact: {
-        rows: [
-          { name: 'asdasd', show: true },
-          { name: 'department', show: true },
-        ],
-        show: true
+        rows: ['asdasd', 'department']
       }
     }
   }
@@ -64,6 +48,7 @@ const obj2 = {
 const cfg1 = new Config(obj1);
 const cfg2 = new Config(obj2);
 
-const diff = cfg1.diff(cfg2);
-
-console.dir(diff.toJSON(), { depth: null });
+const fullCfg = cfg1.glue(cfg2);
+const diff = fullCfg.diff(cfg2);
+console.dir(fullCfg.toJSON(), { depth: null });
+console.dir(diff, { depth: null });
