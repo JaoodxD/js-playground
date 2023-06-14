@@ -51,7 +51,10 @@ const diffStrategy = {
       const mergedValue = diff(obj1[key], obj2[key]);
       if (mergedValue !== undefined) obj[key] = mergedValue;
     }
-    if (!Object.keys(obj).length) return undefined;
+
+    const keysCount = Object.keys(obj).length;
+    if (!keysCount) return;
+
     return obj;
   }
 };
