@@ -54,7 +54,7 @@ const diffStrategy = {
 
     const keysCount = Object.keys(obj).length;
     if (!keysCount) return;
-
+    if (keysCount === 1 && obj.hasOwnProperty('time')) return;
     return obj;
   }
 };
