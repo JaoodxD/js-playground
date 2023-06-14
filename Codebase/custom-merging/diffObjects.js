@@ -1,4 +1,4 @@
-const mergeStrategy = {
+const diffStrategy = {
   primitive(value1, value2) {
     return value1 !== value2 ? value2 ?? value1 : undefined;
   },
@@ -36,8 +36,8 @@ const mergeStrategy = {
   },
 
   object(obj1, obj2) {
-    if (!obj1) return merge(obj2, obj2);
-    if (!obj2) return merge(obj1, obj1);
+    if (!obj1) return diff(obj2, obj2);
+    if (!obj2) return diff(obj1, obj1);
     const { constructor } = Reflect.getPrototypeOf(obj2);
     const obj = new constructor();
 
@@ -46,7 +46,7 @@ const mergeStrategy = {
     const fields = new Set(fields1.concat(fields2));
 
     for (const key of fields) {
-      const mergedValue = merge(obj1[key], obj2[key]);
+      const mergedValue = diff(obj1[key], obj2[key]);
       if (mergedValue !== undefined) obj[key] = mergedValue;
     }
     if (!Object.keys(obj).length) return undefined;
@@ -68,6 +68,6 @@ const getType = (value) => {
   return 'primitive';
 }
 
-const merge = (v1, v2) => mergeStrategy[getType(v1)](v1, v2);
+const diff = (v1, v2) => diffStrategy[getType(v1)](v1, v2);
 
-module.exports = merge;
+module.exports = diff;
