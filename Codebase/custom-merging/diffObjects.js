@@ -1,6 +1,8 @@
 const diffStrategy = {
   primitive(value1, value2) {
-    return value1 !== value2 ? value2 ?? value1 : undefined;
+    if (value1 === value2) return;
+    if (value2 === undefined) return value1;
+    return value2;
   },
 
   primitiveArray(arr1, arr2 = []) {
