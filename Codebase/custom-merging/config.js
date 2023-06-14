@@ -1,3 +1,6 @@
+const diff = require('./customMergeObjects');
+
+
 const mergeStrategy = {
   primitive(value1, value2) {
     return value2 ?? value1;
@@ -70,14 +73,15 @@ class Config {
     this.#config = cfgObj;
   }
 
-  diff(cfgObj) {
+  glue(cfgObj) {
     const obj2 = cfgObj instanceof Config ? cfgObj.toJSON() : cfgObj;
     const newCfg = merge(this.#config, obj2);
-    return new Diff(newCfg);
+    return new Config(newCfg);
   }
 
-  glue(diff) {
-    return new Config;
+  diff(config) {
+    const obj = config instanceof Config ? config.toJSON() : config
+    return diff(this.#config, obj);
   }
 
   toJSON() {
@@ -85,22 +89,6 @@ class Config {
   }
 }
 
-class Diff {
-  #configDiff;
-  constructor(cfgDiff) {
-    if (cfgDiff instanceof Config) this.#configDiff = cfgDiff.toJSON();
-    else this.#configDiff = cfgDiff;
-  }
-
-  glue(config) {
-    return config.glue(this.#configDiff);
-  }
-
-  toJSON() {
-    return this.#configDiff;
-  }
-}
-
 module.exports = {
-  Config, Diff
+  Config
 }
