@@ -1,4 +1,4 @@
-const diff = require('./customMergeObjects');
+const diff = require('./diffObjects');
 
 
 const mergeStrategy = {
