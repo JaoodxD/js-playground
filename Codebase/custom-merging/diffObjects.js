@@ -1,3 +1,5 @@
+const getType = require('./valueType');
+
 const diffStrategy = {
   primitive(value1, value2) {
     if (value1 === value2) return;
@@ -57,20 +59,6 @@ const diffStrategy = {
     return obj;
   }
 };
-
-const getType = (value) => {
-  if (Array.isArray(value)) {
-    const [element] = value;
-    const type = typeof element;
-    if (type !== 'object') return 'primitiveArray';
-    return 'objectsArray';
-  }
-  if (typeof value === 'object') {
-    if ('time' in value) return 'timestampedObject';
-    return 'object';
-  };
-  return 'primitive';
-}
 
 const diff = (v1, v2) => diffStrategy[getType(v1)](v1, v2);
 
