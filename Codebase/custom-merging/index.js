@@ -1,15 +1,14 @@
 const { Config } = require('./config');
 
-
 const obj1 = {
   countries: [1, 2, 3, 4],
   order: {
     settings: {
       address: {
-        swap: false
+        swap: true
       }
     },
-    time: 1437
+    time: 1439
   },
   cardOrder: {
     time: 20000,
@@ -17,8 +16,8 @@ const obj1 = {
       comment: {
       },
       contact: {
-        rows: ['country', 'department']
-      }
+        rows: ['country', 'department', 'DIMAS']
+      },
     }
   }
 };
@@ -34,7 +33,7 @@ const obj2 = {
     time: 1438
   },
   cardOrder: {
-    time: 18000,
+    time: 28000,
     settings: {
       comment: {
       },
@@ -44,11 +43,23 @@ const obj2 = {
     }
   }
 };
-
 const cfg1 = new Config(obj1);
 const cfg2 = new Config(obj2);
 
-const fullCfg = cfg1.glue(cfg2);
-const diff = fullCfg.diff(cfg2);
+const diff = cfg1.diff(cfg2);
+
+console.log('\n#GROUP CONFIG:');
+console.dir(cfg1.toJSON(), { depth: null });
+
+console.log('\n#USER CONFIG:');
+console.dir(cfg2.toJSON(), { depth: null });
+
+console.log('\n#DIFF CONFIG:');
+console.dir(diff.toJSON(), { depth: null });
+
+// diff.printCells();
+
+const fullCfg = cfg1.diff(diff);
+
+console.log('\n#NEW USER CONFIG:');
 console.dir(fullCfg.toJSON(), { depth: null });
-console.dir(diff, { depth: null });
