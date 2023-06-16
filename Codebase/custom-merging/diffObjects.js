@@ -32,21 +32,20 @@ const diffStrategy = {
 
   timestampedObject(obj1, obj2 = {}) {
     const { time: t1 } = obj1;
-    const { time: t2 } = obj2;
+    const { time: t2 = 0 } = obj2;
     if (t1 > t2) return this.object(obj1, {});
     return this.object(obj1, obj2);
   },
 
   object(obj1, obj2) {
-    if (!obj1) return diff(obj2, obj2);
-    if (!obj2) return diff(obj1, obj1);
+    if (!obj1) return diff({}, obj2);
+    if (!obj2) return diff(obj1, {});
     const { constructor } = Reflect.getPrototypeOf(obj2);
     const obj = new constructor();
 
     const fields1 = Object.keys(obj1);
     const fields2 = Object.keys(obj2);
     const fields = new Set(fields1.concat(fields2));
-
     for (const key of fields) {
       const mergedValue = diff(obj1[key], obj2[key]);
       if (mergedValue !== undefined) obj[key] = mergedValue;
