@@ -26,7 +26,7 @@ class Config {
   glue(cfgObj) {
     const obj2 = cfgObj instanceof Config ? cfgObj.toJSON() : cfgObj;
     const newCfg = merge(this.#config, obj2);
-    return new Config(newCfg);
+    return new Config(newCfg).setParents(this, new Config(newCfg));
   }
 
   diff(config) {
