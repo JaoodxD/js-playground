@@ -30,7 +30,7 @@ const obj2 = {
         swap: false
       }
     },
-    time: 1438
+    time: 1440
   },
   cardOrder: {
     time: 28000,
@@ -59,7 +59,8 @@ console.dir(diff.toJSON(), { depth: null });
 
 // diff.printCells();
 
-const fullCfg = cfg1.diff(diff);
+const fullCfg = cfg1.glue(diff);
 
 console.log('\n#NEW USER CONFIG:');
 console.dir(fullCfg.toJSON(), { depth: null });
+fullCfg.printCells();
