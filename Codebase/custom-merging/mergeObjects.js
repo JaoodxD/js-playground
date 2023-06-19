@@ -6,7 +6,8 @@ const mergeStrategy = {
   },
 
   primitiveArray(arr1, arr2 = []) {
-    const concated = arr1.filter((x) => !arr2.includes(x)).concat(arr2);
+    const concated = arr1.filter((x) => !arr2.includes(x))
+      .concat(arr2.filter((x) => !arr1.includes(x)));
     return concated;
   },
 
