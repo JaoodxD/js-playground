@@ -35,7 +35,7 @@ const diffStrategy = {
   timestampedObject(obj1, obj2 = {}) {
     const { time: t1 } = obj1;
     const { time: t2 = 0 } = obj2;
-    if (t1 > t2) return this.object(obj1, {});
+    if (t1 > t2) return;// this.object(obj1, {});
     return this.object(obj1, obj2);
   },
 
