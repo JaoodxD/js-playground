@@ -154,3 +154,73 @@ test('objects with primitive values', async (t) => {
     assert.deepEqual(result, value2);
   });
 });
+
+test('objects with nested arrays', async (t) => {
+  await t.test('should return first array if second is empty', () => {
+    const value1 = { countries: [1, 2, 3, 4] };
+    const value2 = { countries: [] };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+
+    assert.deepEqual(result, value1);
+  });
+
+  await t.test('should return second if first array is empty', () => {
+    const value1 = { countries: [] };
+    const value2 = { countries: [1, 2, 3, 4] };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+
+    assert.deepEqual(result, value2);
+  });
+
+  await t.test('should return excluded elements', () => {
+    const value1 = { countries: [1, 2, 3, 4] };
+    const value2 = { countries: [1, 3] };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+    const expected = { countries: [2, 4] };
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('should return included elements', () => {
+    const value1 = { countries: [1, 2, 3, 4] };
+    const value2 = { countries: [1, 2, 3, 4, 5] };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+    const expected = { countries: [5] };
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('should return newely included and excluded elements', () => {
+    const value1 = { countries: [1, 2, 3, 4] };
+    const value2 = { countries: [1, 2, 3, 5] };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+    const expected = { countries: [4, 5] };
+
+    assert.deepEqual(result, expected);
+  });
+});
