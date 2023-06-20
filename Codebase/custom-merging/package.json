@@ -1,0 +1,12 @@
+{
+  "name": "custom-merging",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "Maksym Shenderuk <jaood96@gmail.com>",
+  "license": "ISC"
+}
