@@ -113,3 +113,44 @@ test('diff array of primitives', async (t) => {
     assert.deepEqual(result, expected);
   });
 });
+
+test('objects with primitive values', async (t) => {
+  await t.test('should return first if second is null/undefined', () => {
+    const value1 = { a: 1 };
+    const value2 = { a: undefined };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+
+    assert.deepEqual(result, value1);
+  });
+
+  await t.test('should return null if both values are equal', () => {
+    const value1 = { a: 2 };
+    const value2 = { a: 2 };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+
+    assert.strictEqual(result, null);
+  });
+
+  await t.test('should return second if both values are present and not equal', () => {
+    const value1 = { a: 1 };
+    const value2 = { a: 2 };
+
+    const cfg1 = new Config(value1);
+    const cfg2 = new Config(value2);
+    const diff = cfg1.diff(cfg2);
+
+    const result = diff.toJSON();
+
+    assert.deepEqual(result, value2);
+  });
+});
