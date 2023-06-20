@@ -91,7 +91,7 @@ class Config {
   }
 
   toJSON() {
-    return this.#config;
+    return this.#config ?? null;
   }
 }
 
