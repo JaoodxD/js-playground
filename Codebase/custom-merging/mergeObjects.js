@@ -33,10 +33,9 @@ const mergeStrategy = {
   },
 
   object(obj1, obj2) {
-    if (!obj1) return merge(obj2, obj2);
-    if (!obj2) return merge(obj1, obj1);
-    const { constructor } = Reflect.getPrototypeOf(obj2);
-    const obj = new constructor();
+    if (!obj1) return merge(obj2, emptyInstance(obj2));
+    if (!obj2) return merge(obj1, emptyInstance(obj1));
+    const obj = emptyInstance(obj2);
 
     const fields1 = Object.keys(obj1);
     const fields2 = Object.keys(obj2);
@@ -46,8 +45,17 @@ const mergeStrategy = {
       const mergedValue = merge(obj1[key], obj2[key]);
       obj[key] = mergedValue;
     }
+
+    const keysCount = Object.keys(obj).length;
+    if (!keysCount) return;
+    if (keysCount === 1 && obj.hasOwnProperty('time')) return;
     return obj;
   }
+};
+
+const emptyInstance = (val) => {
+  const { constructor } = Reflect.getPrototypeOf(val);
+  return new constructor();
 };
 
 const merge = (v1, v2) => mergeStrategy[getType(v1)](v1, v2);

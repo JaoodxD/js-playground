@@ -42,8 +42,7 @@ const diffStrategy = {
   object(obj1, obj2) {
     if (!obj1) return diff({}, obj2);
     if (!obj2) return diff(obj1, {});
-    const { constructor } = Reflect.getPrototypeOf(obj2);
-    const obj = new constructor();
+    const obj = emptyInstance(obj2);
 
     const fields1 = Object.keys(obj1);
     const fields2 = Object.keys(obj2);
@@ -58,6 +57,11 @@ const diffStrategy = {
     if (keysCount === 1 && obj.hasOwnProperty('time')) return;
     return obj;
   }
+};
+
+const emptyInstance = (val) => {
+  const { constructor } = Reflect.getPrototypeOf(val);
+  return new constructor();
 };
 
 const diff = (v1, v2) => diffStrategy[getType(v1)](v1, v2);
