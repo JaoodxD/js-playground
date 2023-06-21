@@ -307,3 +307,55 @@ test('diff tests', async (t) => {
     });
   });
 });
+
+test('glue tests', async (t) => {
+  await t.test('glue primitives', async (t) => {
+    await t.test('should return first value when diff in null', () => {
+      const group = new Config(1);
+      const diff = new Config(null);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = 1;
+
+      assert.strictEqual(result, expected);
+    });
+
+    await t.test('should return diff value when group cfg in null', () => {
+      const group = new Config(null);
+      const diff = new Config(2);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = 2;
+
+      assert.strictEqual(result, expected);
+    });
+
+    await t.test('should return diff as a newer value', () => {
+      const group = new Config(3);
+      const diff = new Config(5);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = 5;
+
+      assert.strictEqual(result, expected);
+    });
+
+    await t.test('should return 0 as a newer value', () => {
+      const group = new Config(3);
+      const diff = new Config(0);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = 0;
+
+      assert.strictEqual(result, expected);
+    });
+  });
+});
