@@ -359,7 +359,7 @@ test('glue tests', async (t) => {
     });
   });
 
-  await t.test('glue primitive arrays', async (t) => {
+  await t.test('glue array of primitives', async (t) => {
     await t.test('should return group when diff is null', () => {
       const group = new Config([1, 2, 3, 4]);
       const diff = new Config(null);
