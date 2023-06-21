@@ -358,4 +358,78 @@ test('glue tests', async (t) => {
       assert.strictEqual(result, expected);
     });
   });
+
+  await t.test('glue primitive arrays', async (t) => {
+    await t.test('should return group when diff is null', () => {
+      const group = new Config([1, 2, 3, 4]);
+      const diff = new Config(null);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = [1, 2, 3, 4];
+
+      assert.ok(arraysContainSameElements(result, expected));
+    });
+
+    await t.test('should return group when diff is empty array', () => {
+      const group = new Config([1, 2, 3, 4]);
+      const diff = new Config([]);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = [1, 2, 3, 4];
+
+      assert.ok(arraysContainSameElements(result, expected));
+    });
+
+    await t.test('should return diff when base config is null', () => {
+      const group = new Config(null);
+      const diff = new Config([1, 2, 3, 4]);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = [1, 2, 3, 4];
+
+      assert.ok(arraysContainSameElements(result, expected));
+    });
+
+    await t.test('should return diff when base config is empty array', () => {
+      const group = new Config([]);
+      const diff = new Config([1, 2, 3, 4]);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = [1, 2, 3, 4];
+
+      assert.ok(arraysContainSameElements(result, expected));
+    });
+
+    await t.test('should return array of exclusive values', () => {
+      const group = new Config([1, 2, 3, 4]);
+      const diff = new Config([3, 5]);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = [1, 2, 4, 5];
+
+      assert.ok(arraysContainSameElements(result, expected));
+    });
+
+    await t.test('should return null when two arrays duplicate each other', () => {
+      const group = new Config([1, 2, 3, 4]);
+      const diff = new Config([1, 2, 3, 4]);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = null;
+
+      assert.strictEqual(result, expected);
+    });
+  });
 });
