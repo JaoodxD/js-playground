@@ -1,4 +1,5 @@
 const getType = (value) => {
+  if (value == null) return 'primitive';
   if (Array.isArray(value)) {
     const [element] = value;
     const type = typeof element;
