@@ -3,6 +3,17 @@ const { Config } = require('./config.js');
 const { test } = require('node:test');
 const assert = require('node:assert');
 
+const arraysContainSameElements = (arr1, arr2) => {
+  if (!Array.isArray(arr1)) return false;
+  if (!Array.isArray(arr2)) return false;
+  if (arr1.length !== arr2.length) return false;
+
+  const sortedArr1 = arr1.slice().sort();
+  const sortedArr2 = arr2.slice().sort();
+
+  return sortedArr1.every((value, index) => value === sortedArr2[index]);
+};
+
 test('diff tests', async (t) => {
   await t.test('diff primitives', async (t) => {
     await t.test('should return first if second is null/undefined', () => {
