@@ -3,224 +3,296 @@ const { Config } = require('./config.js');
 const { test } = require('node:test');
 const assert = require('node:assert');
 
-test('diff primitives', async (t) => {
-  await t.test('should return first if second is null/undefined', () => {
-    const value1 = 1;
-    const value2 = undefined;
+test('diff tests', async (t) => {
+  await t.test('diff primitives', async (t) => {
+    await t.test('should return first if second is null/undefined', () => {
+      const value1 = 1;
+      const value2 = undefined;
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
 
-    const result = diff.toJSON();
+      const result = diff.toJSON();
 
-    assert.strictEqual(result, value1);
+      assert.strictEqual(result, value1);
+    });
+
+    await t.test('should return null if both values are equal', () => {
+      const value1 = 2;
+      const value2 = 2;
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+
+      assert.strictEqual(result, null);
+    });
+
+    await t.test('should return second if both values are present and not equal', () => {
+      const value1 = 1;
+      const value2 = 2;
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+
+      assert.strictEqual(result, value2);
+    });
   });
 
-  await t.test('should return null if both values are equal', () => {
-    const value1 = 2;
-    const value2 = 2;
+  await t.test('diff array of primitives', async (t) => {
+    await t.test('should return first array if second is empty', () => {
+      const value1 = [1, 2, 3, 4];
+      const value2 = [];
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
 
-    const result = diff.toJSON();
+      const result = diff.toJSON();
 
-    assert.strictEqual(result, null);
+      assert.deepEqual(result, value1);
+    });
+
+    await t.test('should return second if first array is empty', () => {
+      const value1 = [];
+      const value2 = [1, 2, 3, 4];
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+
+      assert.deepEqual(result, value2);
+    });
+
+    await t.test('should return excluded elements', () => {
+      const value1 = [1, 2, 3, 4];
+      const value2 = [1, 3];
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+      const expected = [2, 4];
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return included elements', () => {
+      const value1 = [1, 2, 3, 4];
+      const value2 = [1, 2, 3, 4, 5];
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+      const expected = [5];
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return newely included and excluded elements', () => {
+      const value1 = [1, 2, 3, 4];
+      const value2 = [1, 2, 3, 5];
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+      const expected = [4, 5];
+
+      assert.deepEqual(result, expected);
+    });
   });
 
-  await t.test('should return second if both values are present and not equal', () => {
-    const value1 = 1;
-    const value2 = 2;
+  await t.test('objects with primitive values', async (t) => {
+    await t.test('should return first if second is null/undefined', () => {
+      const value1 = { a: 1 };
+      const value2 = { a: undefined };
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
 
-    const result = diff.toJSON();
+      const result = diff.toJSON();
 
-    assert.strictEqual(result, value2);
-  });
-});
+      assert.deepEqual(result, value1);
+    });
 
-test('diff array of primitives', async (t) => {
-  await t.test('should return first array if second is empty', () => {
-    const value1 = [1, 2, 3, 4];
-    const value2 = [];
+    await t.test('should return null if both values are equal', () => {
+      const value1 = { a: 2 };
+      const value2 = { a: 2 };
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
 
-    const result = diff.toJSON();
+      const result = diff.toJSON();
 
-    assert.deepEqual(result, value1);
-  });
+      assert.strictEqual(result, null);
+    });
 
-  await t.test('should return second if first array is empty', () => {
-    const value1 = [];
-    const value2 = [1, 2, 3, 4];
+    await t.test('should return second if both values are present and not equal', () => {
+      const value1 = { a: 1 };
+      const value2 = { a: 2 };
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
 
-    const result = diff.toJSON();
+      const result = diff.toJSON();
 
-    assert.deepEqual(result, value2);
-  });
-
-  await t.test('should return excluded elements', () => {
-    const value1 = [1, 2, 3, 4];
-    const value2 = [1, 3];
-
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
-
-    const result = diff.toJSON();
-    const expected = [2, 4];
-
-    assert.deepEqual(result, expected);
+      assert.deepEqual(result, value2);
+    });
   });
 
-  await t.test('should return included elements', () => {
-    const value1 = [1, 2, 3, 4];
-    const value2 = [1, 2, 3, 4, 5];
+  await t.test('objects with nested arrays', async (t) => {
+    await t.test('should return first array if second is empty', () => {
+      const value1 = { countries: [1, 2, 3, 4] };
+      const value2 = { countries: [] };
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
 
-    const result = diff.toJSON();
-    const expected = [5];
+      const result = diff.toJSON();
 
-    assert.deepEqual(result, expected);
+      assert.deepEqual(result, value1);
+    });
+
+    await t.test('should return second if first array is empty', () => {
+      const value1 = { countries: [] };
+      const value2 = { countries: [1, 2, 3, 4] };
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+
+      assert.deepEqual(result, value2);
+    });
+
+    await t.test('should return excluded elements', () => {
+      const value1 = { countries: [1, 2, 3, 4] };
+      const value2 = { countries: [1, 3] };
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+      const expected = { countries: [2, 4] };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return included elements', () => {
+      const value1 = { countries: [1, 2, 3, 4] };
+      const value2 = { countries: [1, 2, 3, 4, 5] };
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+      const expected = { countries: [5] };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return newely included and excluded elements', () => {
+      const value1 = { countries: [1, 2, 3, 4] };
+      const value2 = { countries: [1, 2, 3, 5] };
+
+      const cfg1 = new Config(value1);
+      const cfg2 = new Config(value2);
+      const diff = cfg1.diff(cfg2);
+
+      const result = diff.toJSON();
+      const expected = { countries: [4, 5] };
+
+      assert.deepEqual(result, expected);
+    });
   });
 
-  await t.test('should return newely included and excluded elements', () => {
-    const value1 = [1, 2, 3, 4];
-    const value2 = [1, 2, 3, 5];
+  await t.test('mixed test cases', async (t) => {
+    await t.test('should return null on equal configs', () => {
+      const group = new Config({
+        countries: [1, 2, 3, 4, 5],
+        order: {
+          show: true,
+          rows: ['id', 'phone', 'country', 'departments']
+        }
+      });
+      const user = new Config({
+        countries: [1, 2, 3, 4, 5],
+        order: {
+          show: true,
+          rows: ['id', 'phone', 'country', 'departments']
+        }
+      });
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const diff = group.diff(user);
+      const result = diff.toJSON();
 
-    const result = diff.toJSON();
-    const expected = [4, 5];
+      assert.deepEqual(result, null);
+    });
 
-    assert.deepEqual(result, expected);
-  });
-});
+    await t.test('should return only fields that differ', () => {
+      const group = new Config({
+        countries: [1, 2, 3, 4, 5],
+        order: {
+          show: true,
+          rows: ['id', 'phone', 'country', 'departments']
+        }
+      });
+      const user = new Config({
+        countries: [1, 2, 3, 4, 5],
+        order: {
+          show: false,
+          rows: ['id', 'phone', 'country', 'departments']
+        }
+      });
 
-test('objects with primitive values', async (t) => {
-  await t.test('should return first if second is null/undefined', () => {
-    const value1 = { a: 1 };
-    const value2 = { a: undefined };
+      const diff = group.diff(user);
+      const result = diff.toJSON();
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const expected = {
+        order: {
+          show: false
+        }
+      };
 
-    const result = diff.toJSON();
+      assert.deepEqual(result, expected);
+    });
 
-    assert.deepEqual(result, value1);
-  });
+    await t.test('should return second config if first is empty', () => {
+      const group = new Config({});
+      const user = new Config({
+        countries: [1, 2, 3, 4, 5],
+        order: {
+          show: true,
+          rows: ['id', 'phone', 'country', 'departments']
+        }
+      });
 
-  await t.test('should return null if both values are equal', () => {
-    const value1 = { a: 2 };
-    const value2 = { a: 2 };
+      const diff = group.diff(user);
+      const result = diff.toJSON();
 
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
+      const expected = user.toJSON();
 
-    const result = diff.toJSON();
-
-    assert.strictEqual(result, null);
-  });
-
-  await t.test('should return second if both values are present and not equal', () => {
-    const value1 = { a: 1 };
-    const value2 = { a: 2 };
-
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
-
-    const result = diff.toJSON();
-
-    assert.deepEqual(result, value2);
-  });
-});
-
-test('objects with nested arrays', async (t) => {
-  await t.test('should return first array if second is empty', () => {
-    const value1 = { countries: [1, 2, 3, 4] };
-    const value2 = { countries: [] };
-
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
-
-    const result = diff.toJSON();
-
-    assert.deepEqual(result, value1);
-  });
-
-  await t.test('should return second if first array is empty', () => {
-    const value1 = { countries: [] };
-    const value2 = { countries: [1, 2, 3, 4] };
-
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
-
-    const result = diff.toJSON();
-
-    assert.deepEqual(result, value2);
-  });
-
-  await t.test('should return excluded elements', () => {
-    const value1 = { countries: [1, 2, 3, 4] };
-    const value2 = { countries: [1, 3] };
-
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
-
-    const result = diff.toJSON();
-    const expected = { countries: [2, 4] };
-
-    assert.deepEqual(result, expected);
-  });
-
-  await t.test('should return included elements', () => {
-    const value1 = { countries: [1, 2, 3, 4] };
-    const value2 = { countries: [1, 2, 3, 4, 5] };
-
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
-
-    const result = diff.toJSON();
-    const expected = { countries: [5] };
-
-    assert.deepEqual(result, expected);
-  });
-
-  await t.test('should return newely included and excluded elements', () => {
-    const value1 = { countries: [1, 2, 3, 4] };
-    const value2 = { countries: [1, 2, 3, 5] };
-
-    const cfg1 = new Config(value1);
-    const cfg2 = new Config(value2);
-    const diff = cfg1.diff(cfg2);
-
-    const result = diff.toJSON();
-    const expected = { countries: [4, 5] };
-
-    assert.deepEqual(result, expected);
+      assert.deepEqual(result, expected);
+    });
   });
 });
