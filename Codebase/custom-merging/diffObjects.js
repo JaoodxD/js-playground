@@ -3,7 +3,7 @@ const getType = require('./valueType');
 const diffStrategy = {
   primitive(value1, value2) {
     if (value1 === value2) return;
-    if (value2 === undefined) return value1;
+    if (value2 == undefined) return value1;
     return value2;
   },
 
