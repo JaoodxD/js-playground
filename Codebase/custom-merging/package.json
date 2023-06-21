@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "test:watch" : "node --test --watch config.test.js"
   },
   "keywords": [],
   "author": "Maksym Shenderuk <jaood96@gmail.com>",
