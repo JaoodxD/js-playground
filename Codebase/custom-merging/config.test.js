@@ -489,4 +489,135 @@ test('glue tests', async (t) => {
     });
   });
 
+  await t.test('objects with nested arrays', async (t) => {
+    await t.test('should return first-like object when diff is null', () => {
+      const group = new Config({
+        countries: [1, 2, 3, 4]
+      });
+
+      const diff = new Config(null);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        countries: [1, 2, 3, 4]
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return first-like object when diff is empty', () => {
+      const group = new Config({
+        countries: [1, 2, 3, 4]
+      });
+
+      const diff = new Config({
+        countries: []
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        countries: [1, 2, 3, 4]
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return diff-like object when group is null', () => {
+      const group = new Config(null);
+
+      const diff = new Config({
+        countries: [1, 2, 3, 4]
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        countries: [1, 2, 3, 4]
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return diff-like object when group is empty', () => {
+      const group = new Config({
+        countries: []
+      });
+
+      const diff = new Config({
+        countries: [1, 2, 3, 4]
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        countries: [1, 2, 3, 4]
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return object with array of exclusive values', () => {
+      const group = new Config({
+        countries: [1, 2, 3, 4]
+      });
+
+      const diff = new Config({
+        countries: [1, 2, 3, 4, 5]
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        countries: [5]
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return null if group and diff are equal', () => {
+      const group = new Config({
+        countries: [1, 2, 3, 4]
+      });
+
+      const diff = new Config({
+        countries: [1, 2, 3, 4]
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = null;
+
+      assert.strictEqual(result, expected);
+    });
+
+    await t.test('should return only nested arrays that differs', () => {
+      const group = new Config({
+        countries: [1, 2, 3, 4],
+        departments: [1, 2, 3]
+      });
+
+      const diff = new Config({
+        countries: [1, 2, 3, 4],
+        departments: [3, 4]
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        departments: [1, 2, 4]
+      };
+
+      assert.deepEqual(result, expected);
+    });
+  });
+
 });
