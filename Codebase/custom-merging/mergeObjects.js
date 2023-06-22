@@ -45,7 +45,7 @@ const mergeStrategy = {
 
     for (const key of fields) {
       const mergedValue = merge(obj1[key], obj2[key]);
-      obj[key] = mergedValue;
+      if (mergedValue !== undefined) obj[key] = mergedValue;
     }
 
     const keysCount = Object.keys(obj).length;
