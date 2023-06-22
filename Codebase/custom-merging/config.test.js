@@ -432,4 +432,61 @@ test('glue tests', async (t) => {
       assert.strictEqual(result, expected);
     });
   });
+
+  await t.test('objects with primitive values', async (t) => {
+    await t.test('should return first if second is null/undefined', () => {
+      const group = new Config({
+        name: 'Maksym'
+      });
+      const diff = new Config(null);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        name: 'Maksym'
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return second when objects differs', () => {
+      const group = new Config({
+        name: 'Maksym'
+      });
+      const diff = new Config({
+        name: ''
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        name: ''
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return combined object of changed and old values', () => {
+      const group = new Config({
+        name: 'Maksym',
+        age: 65
+      });
+      const diff = new Config({
+        name: 'NewName',
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        name: 'NewName', // new value from diff
+        age: 65 // inherited value
+      };
+
+      assert.deepEqual(result, expected);
+    });
+  });
+
 });
