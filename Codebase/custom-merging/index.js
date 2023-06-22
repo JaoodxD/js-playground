@@ -1,6 +1,48 @@
-const { Config } = require('./config');
+const { Config, DimkinHelperSKrasnymiISinimiTochkami } = require('./config');
 
-const group = new Config({
+const group = {
+  countries: [1, 2, 3, 4, 5],
+  order: {
+    rows: ['id', 'status'],
+    show: true
+  },
+  cardOrder: {
+    settings: {
+      comment: {
+        show: true
+      },
+      contact: {
+        show: true,
+        rows: ['department']
+      }
+    },
+    show: true
+  }
+};
+
+const user = {
+  countries: [1, 2, 3, 4, 5],
+  order: {
+    rows: ['id', 'status'],
+    show: true
+  },
+  cardOrder: {
+    settings: {
+      comment: {
+        show: false
+      },
+      contact: {
+        show: true,
+        rows: ['department']
+      }
+    },
+    show: true
+  }
+};
+
+const result = DimkinHelperSKrasnymiISinimiTochkami(group, user, 'cardOrder/settings/contact/rows/department');
+console.log(result);
+/* const group = new Config({
   order: {
     name:'Dima'
   }
@@ -20,7 +62,9 @@ console.log('\nDIFF: ',diff.toJSON());
 
 const newUser = group.glue(diff);
 
-console.log('\nNEW USER: ',newUser.toJSON());
+console.log('\nNEW USER: ', newUser.toJSON());
+
+newUser.printCells(); */
 
 
 /* const obj1 = {
