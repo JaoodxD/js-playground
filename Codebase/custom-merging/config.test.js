@@ -620,4 +620,83 @@ test('glue tests', async (t) => {
     });
   });
 
+  await t.test('objects with nested objects', async (t) => {
+    await t.test('should return diff as more recent values', () => {
+      const group = new Config({
+        permissions: {
+          show: true,
+          draggable: true
+        }
+      });
+
+      const diff = new Config({
+        permissions: {
+          show: false,
+          draggable: false
+        }
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        permissions: {
+          show: false,
+          draggable: false
+        }
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return group if diff is null', () => {
+      const group = new Config({
+        permissions: {
+          show: true,
+          draggable: true
+        }
+      });
+
+      const diff = new Config(null);
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        permissions: {
+          show: true,
+          draggable: true
+        }
+      };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('should return new values from diff and missing values from group', () => {
+      const group = new Config({
+        permissions: {
+          show: true,
+          draggable: false
+        }
+      });
+
+      const diff = new Config({
+        permissions: {
+          draggable: true
+        }
+      });
+
+      const user = group.glue(diff);
+      const result = user.toJSON();
+
+      const expected = {
+        permissions: {
+          show: true,
+          draggable: true
+        }
+      };
+
+      assert.deepEqual(result, expected);
+    });
+  });
 });
