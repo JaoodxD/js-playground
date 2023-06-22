@@ -427,9 +427,9 @@ test('glue tests', async (t) => {
       const user = group.glue(diff);
       const result = user.toJSON();
 
-      const expected = null;
+      const expected = [];
 
-      assert.strictEqual(result, expected);
+      assert.deepEqual(result, expected);
     });
   });
 
@@ -593,9 +593,11 @@ test('glue tests', async (t) => {
       const user = group.glue(diff);
       const result = user.toJSON();
 
-      const expected = null;
+      const expected = {
+        countries: []
+      };
 
-      assert.strictEqual(result, expected);
+      assert.deepEqual(result, expected);
     });
 
     await t.test('should return only nested arrays that differs', () => {
@@ -613,6 +615,7 @@ test('glue tests', async (t) => {
       const result = user.toJSON();
 
       const expected = {
+        countries: [],
         departments: [1, 2, 4]
       };
 
