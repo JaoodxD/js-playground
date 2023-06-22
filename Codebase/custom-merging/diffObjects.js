@@ -11,7 +11,7 @@ const diffStrategy = {
     const filtered = arr1.concat(arr2).filter((x) =>
       arr1.includes(x) !== arr2.includes(x));
     if (!filtered.length) return;
-    return filtered;
+    return filtered.sort();
   },
 
   objectsArray(arr1, arr2) {

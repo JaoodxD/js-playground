@@ -10,7 +10,7 @@ const mergeStrategy = {
     const concated = arr1.filter((x) => !arr2.includes(x))
       .concat(arr2.filter((x) => !arr1.includes(x)));
     if (!concated.length) return;
-    return concated;
+    return concated.sort();
   },
 
   objectsArray(arr1, arr2) {
