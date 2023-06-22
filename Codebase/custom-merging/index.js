@@ -1,6 +1,29 @@
 const { Config } = require('./config');
 
-const obj1 = {
+const group = new Config({
+  order: {
+    name:'Dima'
+  }
+});
+console.log('\nGROUP: ',group.toJSON());
+
+
+const user = new Config({
+  order: {
+    name:'Dima'
+  }
+});
+console.log('\nUSER: ',user.toJSON());
+
+const diff = group.diff(user);
+console.log('\nDIFF: ',diff.toJSON());
+
+const newUser = group.glue(diff);
+
+console.log('\nNEW USER: ',newUser.toJSON());
+
+
+/* const obj1 = {
   countries: [1, 2, 3, 4],
   order: {
     settings: {
@@ -44,9 +67,9 @@ const obj2 = {
   }
 };
 const cfg1 = new Config(obj1);
-const cfg2 = new Config(obj2);
+const cfg2 = new Config(null);
 
-const diff = cfg1.diff(cfg2);
+const diff = cfg1.glue(cfg2);
 
 console.log('\n#GROUP CONFIG:');
 console.dir(cfg1.toJSON(), { depth: null });
@@ -63,4 +86,4 @@ const fullCfg = cfg1.glue(diff);
 
 console.log('\n#NEW USER CONFIG:');
 console.dir(fullCfg.toJSON(), { depth: null });
-fullCfg.printCells();
+fullCfg.printCells(); */
