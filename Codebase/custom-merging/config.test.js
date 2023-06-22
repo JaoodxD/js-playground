@@ -703,3 +703,259 @@ test('glue tests', async (t) => {
     });
   });
 });
+
+test('combined diff with glue tests', async (t) => {
+  await t.test('when user has not changed any configs', () => {
+    const group = new Config({
+      countries: [1, 2, 3, 4],
+      permissions: {
+        show: true,
+        draggable: false
+      }
+    });
+
+    const user = new Config({
+      countries: [1, 2, 3, 4],
+      permissions: {
+        show: true,
+        draggable: false
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = user.toJSON();
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('when user delete some entries', () => {
+    const group = new Config({
+      countries: [1, 2, 3, 4],
+      permissions: {
+        show: true,
+        draggable: false
+      }
+    });
+
+    const user = new Config({
+      countries: [1, 2],
+      permissions: {
+        show: true,
+        draggable: false
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = user.toJSON();
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('when user add some entries', () => {
+    const group = new Config({
+      countries: [1, 2, 3, 4],
+      permissions: {
+        show: true,
+        draggable: false
+      }
+    });
+
+    const user = new Config({
+      countries: [1, 2, 3, 4, 5],
+      permissions: {
+        show: true,
+        draggable: false
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = user.toJSON();
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('when user delete and add some entries', () => {
+    const group = new Config({
+      countries: [1, 2, 3, 4],
+      permissions: {
+        show: true,
+        draggable: false
+      }
+    });
+
+    const user = new Config({
+      countries: [1, 2, 5],
+      permissions: {
+        show: true,
+        draggable: true
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = user.toJSON();
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('glue should restore when all nested arrays are empty', () => {
+    const group = new Config({
+      countries: [1, 2, 3, 4, 5],
+      order: {
+        rows: ['id', 'status', 'attribute'],
+        show: true
+      },
+      cardOrder: {
+        settings: {
+          comment: {
+            show: true
+          },
+          contact: {
+            show: true,
+            rows: ['country', 'department']
+          }
+        },
+        show: true
+      }
+    });
+
+    const user = new Config({
+      countries: [],
+      order: {
+        rows: [],
+        show: true
+      },
+      cardOrder: {
+        settings: {
+          comment: {
+            show: true
+          },
+          contact: {
+            show: true,
+            rows: []
+          }
+        },
+        show: true
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = user.toJSON();
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('should correctly restore values added to user', () => {
+    const group = new Config({
+      countries: [1, 2, 3, 4, 5],
+      order: {
+        rows: ['id', 'status'],
+        show: true
+      },
+      cardOrder: {
+        settings: {
+          comment: {
+            show: true
+          },
+          contact: {
+            show: true,
+            rows: ['department']
+          }
+        },
+        show: true
+      }
+    });
+
+    const user = new Config({
+      countries: [1, 2, 3, 4, 5],
+      order: {
+        rows: ['attribute', 'id', 'status'],
+        show: true
+      },
+      cardOrder: {
+        settings: {
+          comment: {
+            show: true
+          },
+          contact: {
+            show: true,
+            rows: ['country', 'department']
+          }
+        },
+        show: true
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = user.toJSON();
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('######', () => {
+    const group = new Config({
+      countries: [1, 2, 3, 4, 5],
+      order: {
+        rows: ['id', 'status'],
+        show: true
+      },
+      cardOrder: {
+        settings: {
+          comment: {
+            show: false
+          },
+          contact: {
+            show: true,
+            rows: ['department']
+          }
+        },
+        show: true
+      }
+    });
+
+    const user = new Config({
+      countries: [],
+      order: {
+        rows: ['attribute', 'id', 'status'],
+        show: true
+      },
+      cardOrder: {
+        settings: {
+          comment: {
+            show: true
+          },
+          contact: {
+            show: true,
+            rows: ['country', 'department']
+          }
+        },
+        show: true
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = user.toJSON();
+
+    assert.deepEqual(result, expected);
+  });
+});
