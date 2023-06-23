@@ -1,15 +1,26 @@
 const getType = require('./valueType');
 
+const primitiveComparison = (a, b) => {
+  const typeA = typeof a;
+  const typeB = typeof b;
+
+  if (typeA === typeB) {
+    if (typeA === 'number') return a - b;
+    if (typeA === 'string') return a.localeCompare(b);
+  }
+  return a.toString().localeCompare(b.toString());
+};
+
 const mergeStrategy = {
   primitive(value1, value2) {
     return value2 ?? value1;
   },
 
   primitiveArray(arr1, arr2 = []) {
-    if (!arr2) return arr1.slice().sort();
+    if (!arr2) return arr1.slice().sort(primitiveComparison);
     const concated = arr1.filter((x) => !arr2.includes(x))
       .concat(arr2.filter((x) => !arr1.includes(x)));
-    return concated.sort();
+    return concated.sort(primitiveComparison);
   },
 
   objectsArray(arr1, arr2) {
