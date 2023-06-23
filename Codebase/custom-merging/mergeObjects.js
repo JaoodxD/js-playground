@@ -37,9 +37,11 @@ const mergeStrategy = {
     return unique1.concat(merged, unique2);
   },
 
-  timestampedObject(obj1, obj2 = {}) {
-    const { time: t1 } = obj1;
-    const { time: t2 = 0 } = obj2;
+  timestampedObject(obj1, obj2) {
+    const v1 = obj1 ?? {};
+    const v2 = obj2 ?? {};
+    const { time: t1 = 0 } = v1;
+    const { time: t2 = 0 } = v2;
     if (t1 > t2) return this.object(obj1, {});
     return this.object(obj1, obj2);
   },
