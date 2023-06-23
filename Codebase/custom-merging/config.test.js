@@ -959,3 +959,219 @@ test('combined diff with glue tests', async (t) => {
     assert.deepEqual(result, expected);
   });
 });
+
+test('resolving timestamped objects', async (t) => {
+  await t.test('should pick new values when "time" is more recent in user config', async (t) => {
+    await t.test('with primitives', () => {
+      const group = new Config({
+        a: 1,
+        name: 'Johnny',
+        time: 1000
+      });
+
+      const user = new Config({
+        a: 3,
+        name: 'James',
+        time: 2000
+      });
+
+      const diff = group.diff(user);
+      const newUser = group.glue(diff);
+
+      const result = newUser.toJSON();
+      const expected = { a: 3, name: 'James', time: 2000 };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('with arrays of primitives', () => {
+      const group = new Config({
+        a: [1, 2, 3, 4],
+        time: 1000
+      });
+
+      const user = new Config({
+        a: [4, 5],
+        time: 2000
+      });
+
+      const diff = group.diff(user);
+      const newUser = group.glue(diff);
+
+      const result = newUser.toJSON();
+      const expected = { a: [4, 5], time: 2000 };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('with nested objects', () => {
+      const group = new Config({
+        a: {
+          name: 'Johnny'
+        },
+        time: 1000
+      });
+
+      const user = new Config({
+        a: {
+          name: 'James'
+        },
+        time: 2000
+      });
+
+      const diff = group.diff(user);
+      const newUser = group.glue(diff);
+
+      const result = newUser.toJSON();
+      const expected = { a: { name: 'James' }, time: 2000 };
+
+      assert.deepEqual(result, expected);
+    });
+  });
+
+  await t.test('should pick old values when "time" is more recent in group config', async (t) => {
+    await t.test('with primitives', () => {
+      const group = new Config({
+        a: 1,
+        name: 'Johnny',
+        time: 3000
+      });
+
+      const user = new Config({
+        a: 3,
+        name: 'James',
+        time: 2000
+      });
+
+      const diff = group.diff(user);
+      const newUser = group.glue(diff);
+      const result = newUser.toJSON();
+      const expected = { a: 1, name: 'Johnny', time: 3000 };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('with arrays of primitives', () => {
+      const group = new Config({
+        a: [1, 2, 3, 4],
+        time: 3000
+      });
+
+      const user = new Config({
+        a: [4, 5],
+        time: 2000
+      });
+
+      const diff = group.diff(user);
+      const newUser = group.glue(diff);
+      const result = newUser.toJSON();
+      const expected = { a: [1, 2, 3, 4], time: 3000 };
+
+      assert.deepEqual(result, expected);
+    });
+
+    await t.test('with nested objects', () => {
+      const group = new Config({
+        a: [1, 2, 3, 4],
+        time: 3000
+      });
+
+      const user = new Config({
+        a: [4, 5],
+        time: 2000
+      });
+
+      const diff = group.diff(user);
+      const newUser = group.glue(diff);
+      const result = newUser.toJSON();
+      const expected = { a: [1, 2, 3, 4], time: 3000 };
+
+      assert.deepEqual(result, expected);
+    });
+  });
+
+  await t.test('combined nesting objects with old and more recent "time"', () => {
+    const group = new Config({
+      countries: {
+        values: [1, 2, 3, 4, 5],
+        time: 1000
+      },
+      departments: {
+        values: [10, 20],
+        time: 3000
+      }
+    });
+
+    const user = new Config({
+      countries: {
+        values: [4, 5],
+        time: 2000
+      },
+      departments: {
+        values: [20, 30],
+        time: 2000
+      }
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = {
+      countries: {
+        values: [4, 5],
+        time: 2000
+      },
+      departments: {
+        values: [10, 20],
+        time: 3000
+      }
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('combined timestamped nested objects with regular one', () => {
+    const group = new Config({
+      countries: {
+        values: [1, 2, 3, 4, 5],
+        time: 1000
+      },
+      departments: {
+        values: [10, 20],
+        time: 3000
+      },
+      statuses: [1, 2, 3, 4]
+    });
+
+    const user = new Config({
+      countries: {
+        values: [4, 5],
+        time: 2000
+      },
+      departments: {
+        values: [20, 30],
+        time: 2000
+      },
+      statuses: [2, 3, 4, 10]
+    });
+
+    const diff = group.diff(user);
+    const newUser = group.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = {
+      countries: {
+        values: [4, 5],
+        time: 2000
+      },
+      departments: {
+        values: [10, 20],
+        time: 3000
+      },
+      statuses: [2, 3, 4, 10]
+    };
+
+    assert.deepEqual(result, expected);
+  });
+});
