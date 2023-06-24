@@ -47,7 +47,23 @@ const DimkinHelperSKrasnymiISinimiTochkami = (obj1, obj2, path) => {
   return CELL_TYPE.NONE;
 };
 
+const isOrdinaryObject = (value) =>
+  typeof value === 'object' &&
+  !Array.isArray(value) &&
+  value !== null;
+
+const timestampObject = (obj, timestamp = Date.now()) => {
+  if (!isOrdinaryObject(obj)) return obj;
+  for (const key in obj) {
+    if (isOrdinaryObject(obj[key])) {
+      Object.assign(obj[key], { time: timestamp });
+    }
+  }
+  return obj;
+}
+
 module.exports = {
   Config,
   DimkinHelperSKrasnymiISinimiTochkami,
+  timestampObject
 }
