@@ -1,5 +1,5 @@
 'use strict';
-const { Config } = require('./config.js');
+const { Config, timestampObject } = require('./config.js');
 const { test } = require('node:test');
 const assert = require('node:assert');
 
@@ -1170,6 +1170,92 @@ test('resolving timestamped objects', async (t) => {
         time: 3000
       },
       statuses: [2, 3, 4, 10]
+    };
+
+    assert.deepEqual(result, expected);
+  });
+});
+
+test('timestamping tests', async (t) => {
+  await t.test('should not touch first nesting level', () => {
+    const inital = { a: 1, name: 'Johnny' };
+
+    const result = timestampObject(inital);
+    const expected = { a: 1, name: 'Johnny' };
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('should timestamp second nesting level', () => {
+    const inital = { a: 1, name: 'Johnny', order: { fields: ['address', 'id'] } };
+    const time = Date.now();
+
+    const result = timestampObject(inital, time);
+    const expected = { a: 1, name: 'Johnny', order: { fields: ['address', 'id'], time } };
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('should timestamp only second nesting level and skip further nesting', () => {
+    const inital = {
+      a: 1,
+      name: 'Johnny',
+      order: {
+        fields: ['address', 'id'],
+        nestedObject: {
+          random: 'value'
+        }
+      },
+    };
+    const time = Date.now();
+
+    const result = timestampObject(inital, time);
+    const expected = {
+      a: 1,
+      name: 'Johnny',
+      order: {
+        fields: ['address', 'id'],
+        time,
+        nestedObject: {
+          random: 'value'
+        }
+      },
+    };
+
+    assert.deepEqual(result, expected);
+  });
+
+  await t.test('should timestamp many second level nested objects', () => {
+    const inital = {
+      a: 1,
+      name: 'Johnny',
+      order: {
+        fields: ['address', 'id'],
+        nestedObject: {
+          random: 'value'
+        }
+      },
+      permissions: {
+        show: true
+      }
+    };
+    const time = Date.now();
+
+    const result = timestampObject(inital, time);
+    const expected = {
+      a: 1,
+      name: 'Johnny',
+      order: {
+        time,
+        fields: ['address', 'id'],
+        nestedObject: {
+          random: 'value'
+        }
+      },
+      permissions: {
+        time,
+        show: true
+      }
     };
 
     assert.deepEqual(result, expected);
