@@ -25,7 +25,7 @@ class Config {
   }
 }
 
-function DimkinHelperSKrasnymiISinimiTochkami(obj1, obj2, path) {
+const DimkinHelperSKrasnymiISinimiTochkami = (obj1, obj2, path) => {
   const CELL_TYPE = {
     INHERIT: 'grey',
     ENABLED: 'blue',
@@ -49,5 +49,5 @@ function DimkinHelperSKrasnymiISinimiTochkami(obj1, obj2, path) {
 
 module.exports = {
   Config,
-  DimkinHelperSKrasnymiISinimiTochkami
+  DimkinHelperSKrasnymiISinimiTochkami,
 }
