@@ -1179,8 +1179,9 @@ test('resolving timestamped objects', async (t) => {
 test('timestamping tests', async (t) => {
   await t.test('should not touch first nesting level', () => {
     const inital = { a: 1, name: 'Johnny' };
+    const prevState = {};
 
-    const result = timestampObject(inital);
+    const result = timestampObject(inital, prevState);
     const expected = { a: 1, name: 'Johnny' };
 
     assert.deepEqual(result, expected);
@@ -1188,9 +1189,11 @@ test('timestamping tests', async (t) => {
 
   await t.test('should timestamp second nesting level', () => {
     const inital = { a: 1, name: 'Johnny', order: { fields: ['address', 'id'] } };
+    const prevState = {};
+
     const time = Date.now();
 
-    const result = timestampObject(inital, time);
+    const result = timestampObject(inital, prevState, time);
     const expected = { a: 1, name: 'Johnny', order: { fields: ['address', 'id'], time } };
 
     assert.deepEqual(result, expected);
@@ -1207,9 +1210,11 @@ test('timestamping tests', async (t) => {
         }
       },
     };
+    const prevState = {};
+
     const time = Date.now();
 
-    const result = timestampObject(inital, time);
+    const result = timestampObject(inital, prevState, time);
     const expected = {
       a: 1,
       name: 'Johnny',
@@ -1239,6 +1244,8 @@ test('timestamping tests', async (t) => {
         show: true
       }
     };
+    const prevState = {};
+
     const time = Date.now();
 
     const result = timestampObject(inital, time);
