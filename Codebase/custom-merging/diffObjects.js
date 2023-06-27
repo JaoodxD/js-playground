@@ -14,7 +14,7 @@ const diffStrategy = {
     return filtered.sort();
   },
 
-  objectsArray(arr1, arr2) {
+  objectsArray(arr1, arr2 = []) {
     const arr = [];
     for (const obj of arr1) {
       const similar = arr2.find(({ name }) => obj.name === name);
