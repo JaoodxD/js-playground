@@ -1318,4 +1318,28 @@ test('timestamping tests', async (t) => {
   });
 });
 
+test('temp test', async (t) => {
+  await t.test('#1', () => {
+    const oldGroup = new Config({
+      countries: [1, 2]
+    });
+
+    const oldUser = new Config({
+      countries: [1, 2, 3]
+    });
+
+    const diff = oldGroup.diff(oldUser);
+
+    const newGroup = new Config({
+      countries: [1,3, 4]
+    });
+    const newUser = newGroup.glue(diff);
+
+    const result = newUser.toJSON();
+    const expected = {
+      countries: [1, 3, 4]
+    };
+
+    assert.deepEqual(result, expected);
+  });
 });
