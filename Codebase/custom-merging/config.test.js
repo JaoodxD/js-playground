@@ -1248,7 +1248,7 @@ test('timestamping tests', async (t) => {
 
     const time = Date.now();
 
-    const result = timestampObject(inital, time);
+    const result = timestampObject(inital, prevState, time);
     const expected = {
       a: 1,
       name: 'Johnny',
