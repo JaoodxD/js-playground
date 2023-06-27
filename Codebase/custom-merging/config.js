@@ -52,15 +52,17 @@ const isOrdinaryObject = (value) =>
   !Array.isArray(value) &&
   value !== null;
 
-const timestampObject = (obj, timestamp = Date.now()) => {
-  if (!isOrdinaryObject(obj)) return obj;
-  for (const key in obj) {
-    if (isOrdinaryObject(obj[key])) {
-      Object.assign(obj[key], { time: timestamp });
+const timestampObject = (object, previousState, timestamp = Date.now()) => {
+  if (!isOrdinaryObject(object)) return object;
+  for (const key in object) {
+    const isObject = isOrdinaryObject(object[key]);
+    const isDiffers = diff(object[key], previousState[key]);
+    if (isObject && isDiffers) {
+      Object.assign(object[key], { time: timestamp });
     }
   }
-  return obj;
-}
+  return object;
+};
 
 module.exports = {
   Config,
