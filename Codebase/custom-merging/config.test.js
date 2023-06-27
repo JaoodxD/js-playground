@@ -1260,4 +1260,55 @@ test('timestamping tests', async (t) => {
 
     assert.deepEqual(result, expected);
   });
+
+  await t.test('should timestamp only second level nested objects that differs', () => {
+    const inital = {
+      a: 1,
+      name: 'Johnny',
+      order: {
+        fields: ['address', 'id', 'new field'],
+        nestedObject: {
+          random: 'value'
+        }
+      },
+      permissions: {
+        show: true
+      }
+    };
+    const prevState = {
+      a: 1,
+      name: 'Johnny',
+      order: {
+        fields: ['address', 'id'],
+        nestedObject: {
+          random: 'value'
+        }
+      },
+      permissions: {
+        show: true
+      }
+    };
+
+    const time = Date.now();
+
+    const result = timestampObject(inital, prevState, time);
+    const expected = {
+      a: 1,
+      name: 'Johnny',
+      order: {
+        time,
+        fields: ['address', 'id', 'new field'],
+        nestedObject: {
+          random: 'value'
+        }
+      },
+      permissions: {
+        show: true
+      }
+    };
+
+    assert.deepEqual(result, expected);
+  });
+});
+
 });
