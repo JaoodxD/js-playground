@@ -42,11 +42,10 @@ const mergeStrategy = {
     const v2 = obj2 ?? {};
     const { time: t1 = 0 } = v1;
     const { time: t2 = 0 } = v2;
-    if (t1 > t2) return this.object(obj1, {});
-    return this.object(obj1, obj2);
+    if (t1 > t2) return mergeStrategy.object(obj1, obj2, true);
+    return mergeStrategy.object(obj1, obj2);
   },
 
-  object(obj1, obj2) {
   timestampedArray(arr1, arr2 = []) {
     console.log({ arr1, arr2 });
     const unique = arr2.filter((x) => !arr1.includes(x));
@@ -54,6 +53,7 @@ const mergeStrategy = {
     return concated.sort(primitiveComparison);
   },
 
+  object(obj1, obj2, time) {
     if (!obj1) return merge(obj2, emptyInstance(obj2));
     if (!obj2) return merge(obj1, emptyInstance(obj1));
     const obj = emptyInstance(obj2);
@@ -63,7 +63,7 @@ const mergeStrategy = {
     const fields = new Set(fields1.concat(fields2));
 
     for (const key of fields) {
-      const mergedValue = merge(obj1[key], obj2[key]);
+      const mergedValue = merge(obj1[key], obj2[key], time);
       if (mergedValue !== undefined) obj[key] = mergedValue;
     }
 
