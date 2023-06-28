@@ -79,6 +79,10 @@ const emptyInstance = (val) => {
   return new constructor();
 };
 
-const merge = (v1, v2) => mergeStrategy[getType(v1)](v1, v2);
+const merge = (v1, v2, time) => {
+  const type = getType(v1, time);
+  const strategy = mergeStrategy[type];
+  return strategy(v1, v2, time);
+};
 
 module.exports = merge;
