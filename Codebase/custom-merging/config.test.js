@@ -1054,7 +1054,7 @@ test('resolving timestamped objects', async (t) => {
     await t.test('with arrays of primitives', () => {
       const group = new Config({
         a: [1, 2, 3, 4],
-        time: 3000
+        time: 1000
       });
 
       const user = new Config({
@@ -1063,9 +1063,15 @@ test('resolving timestamped objects', async (t) => {
       });
 
       const diff = group.diff(user);
-      const newUser = group.glue(diff);
+
+      const newGroup = new Config({
+        a: [1, 2, 3, 4],
+        time: 3000
+      });
+
+      const newUser = newGroup.glue(diff);
       const result = newUser.toJSON();
-      const expected = { a: [1, 2, 3, 4], time: 3000 };
+      const expected = { a: [1, 2, 3, 4, 5], time: 2000 };
 
       assert.deepEqual(result, expected);
     });
@@ -1321,23 +1327,27 @@ test('timestamping tests', async (t) => {
 test('temp test', async (t) => {
   await t.test('#1', () => {
     const oldGroup = new Config({
-      countries: [1, 2]
+      countries: [1, 2],
+      time: 2000
     });
 
     const oldUser = new Config({
-      countries: [1, 2, 3]
+      countries: [1, 2, 3],
+      time: 3000
     });
 
     const diff = oldGroup.diff(oldUser);
 
     const newGroup = new Config({
-      countries: [1,3, 4]
+      countries: [1, 3, 4],
+      time: 4000
     });
     const newUser = newGroup.glue(diff);
 
     const result = newUser.toJSON();
     const expected = {
-      countries: [1, 3, 4]
+      countries: [1, 3, 4],
+      time: 3000
     };
 
     assert.deepEqual(result, expected);
