@@ -47,7 +47,6 @@ const mergeStrategy = {
   },
 
   timestampedArray(arr1, arr2 = []) {
-    console.log({ arr1, arr2 });
     const unique = arr2.filter((x) => !arr1.includes(x));
     const concated = arr1.concat(unique);
     return concated.sort(primitiveComparison);
