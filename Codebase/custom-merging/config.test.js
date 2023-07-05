@@ -1352,4 +1352,16 @@ test('temp test', async (t) => {
 
     assert.deepEqual(result, expected);
   });
+
+  await t.test('#2', () => {
+    const groupCfg = new Config({ "id": [3, 66], "time": 1687961923021 });
+    const userDiff = new Config({ "id": [3] });
+
+    const userCfg = groupCfg.glue(userDiff);
+    console.log(userCfg.toJSON());
+    const diff = groupCfg.diff(userCfg);
+    console.log(diff.toJSON());
+
+    assert.ok(true);
+  });
 });
