@@ -8,10 +8,10 @@ async function* f (name) {
 
 async function run (letter) {
   for await (const msg of f(letter)) {
-    console.log(msg)
+    console.log(msg) 
+    await wait(500)
   }
 }
 
 run('A')
 run('B')
-
