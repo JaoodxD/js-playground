@@ -1,11 +1,11 @@
 function pipe () {
   const functions = []
   queueMicrotask(exec)
-  return { do: push }
+  return { run }
 
-  function push (name, func) {
+  function run (name, func) {
     functions.push([name, func])
-    return { do: push }
+    return { run }
   }
 
   function exec () {
@@ -21,10 +21,10 @@ function pipe () {
 }
 
 pipe()
-  .do('readConfig', readConfig)
-  .do('doQuery', doQuery)
-  .do('httpGet', httpGet)
-  .do('readFile', readFile)
+  .run('readConfig', readConfig)
+  .run('doQuery', doQuery)
+  .run('httpGet', httpGet)
+  .run('readFile', readFile)
 
 function readConfig (text, callback) {
   console.log(text)
