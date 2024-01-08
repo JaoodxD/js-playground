@@ -28,17 +28,17 @@ pipe()
 
 function readConfig (text, callback) {
   console.log(text)
-  callback()
+  setTimeout(callback, Math.random() * 1000)
 }
 function doQuery (text, callback) {
   console.log(text)
-  callback()
+  setTimeout(callback, Math.random() * 1000)
 }
 function httpGet (text, callback) {
   console.log(text)
-  callback()
+  setTimeout(callback, Math.random() * 1000)
 }
 function readFile (text, callback) {
   console.log(text)
-  callback()
+  setTimeout(callback, Math.random() * 1000)
 }
