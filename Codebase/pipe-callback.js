@@ -1,6 +1,6 @@
 function pipe () {
   const functions = []
-  setTimeout(exec)
+  setTimeout(exec, 0)
   return { run }
 
   function run (func, ...args) {
