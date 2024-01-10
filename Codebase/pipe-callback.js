@@ -1,6 +1,6 @@
 function pipe () {
   const functions = []
-  queueMicrotask(exec)
+  setTimeout(exec)
   return { run }
 
   function run (func, ...args) {
