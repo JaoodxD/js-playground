@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <button id="zero">0</button>
+  <button id="neg-zero">-0</button>
+</body>
+<script type="module">
+  var [zeroBtn, negZeroBtn] = ['#zero', '#neg-zero'].map((id) => document.querySelector(id))
+
+  zeroBtn.addEventListener('click', (e) => {
+    var start = performance.now();
+
+    console.log(
+      doSum(1)
+      , doSum(-1)
+      , doSum(-1)
+      , doSum(-1)
+      , doSum(-1)
+      , doSum(0.1)
+    );
+
+    var diff = performance.now() - start
+    console.log(diff)
+    zeroBtn.innerHTML = `0: ${diff}ms`
+  })
+
+  negZeroBtn.addEventListener('click', (e) => {
+    var start = performance.now();
+
+    console.log(
+      doSumNeg(1)
+      , doSumNeg(-1)
+      , doSumNeg(-1)
+      , doSumNeg(-1)
+      , doSumNeg(-1)
+      , doSumNeg(0.1)
+    );
+
+    var diff = performance.now() - start
+    console.log(diff)
+    negZeroBtn.innerHTML = `-0: ${diff}ms`
+  })
+
+  function doSum(theInc) {
+    var theSummator = 0;
+    for (var theLimit = 0; theLimit < 1073741824; theLimit++) {
+      theSummator += theInc;
+    }
+    return theSummator;
+  }
+
+  function doSumNeg(theInc) {
+    var theSummator = -0;
+    for (var theLimit = 0; theLimit < 1073741824; theLimit++) {
+      theSummator += theInc;
+    }
+    return theSummator;
+  }
+
+</script>
+
+</html>
