@@ -31,9 +31,19 @@ function spl5(url) {
   return url.startsWith('/css/') || url.startsWith('/xlsx/'); //7.39c
 }
 
+const regex = /^\/(?:css|xlsx)\//;
+function spl6(url) {
+  return regex.test(url);
+}
+
+const foldersArr = ['/css', '/xlsx'];
+function spl7(s) {
+  return foldersArr.includes(s.slice(0, s.indexOf('/', 1))); //1.05c
+}
+
 for (const s of arr) {
   //tests
-  console.log(spl(s), spl2(s), spl3(s), spl4(s), spl5(s));
+  console.log(spl(s), spl2(s), spl3(s), spl4(s), spl5(s),spl6(s), spl7(s));
 }
 
 const urls = [
@@ -1516,6 +1526,22 @@ function myFor5(arr) {
   }
 }
 
+function myFor6(arr) {
+  for (let j = 0; j < 100_000_000; j++) {
+    for (const s of arr) {
+      spl6(s);
+    }
+  }
+}
+
+function myFor7(arr) {
+  for (let j = 0; j < 100_000_000; j++) {
+    for (const s of arr) {
+      spl7(s);
+    }
+  }
+}
+
 console.log(urls.length);
 for (let c = 0; c < 5; c++) {
   console.time('for');
@@ -1542,4 +1568,14 @@ for (let c = 0; c < 5; c++) {
   console.time('for5');
   myFor5(arr);
   console.timeEnd('for5');
+}
+for (let c = 0; c < 5; c++) {
+  console.time('for6');
+  myFor6(arr);
+  console.timeEnd('for6');
+}
+for (let c = 0; c < 5; c++) {
+  console.time('for7');
+  myFor7(arr);
+  console.timeEnd('for7');
 }
