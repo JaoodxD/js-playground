@@ -1532,26 +1532,26 @@ function myFor4(arr) {
 for (let c = 0; c < 5; c++) {
   console.time('for');
   const sum = myFor(urls);
-  console.timeEnd('for');
-  console.log(sum) // 46_900_000
+  console.timeEnd('for'); // 470 ms
+  console.log(sum) // 70_200_000
 }
 
 for (let c = 0; c < 5; c++) {
   console.time('for2');
   const sum = myFor2(urls);
-  console.timeEnd('for2');
-  console.log(sum) // 23_500_000
+  console.timeEnd('for2'); // 470ms
+  console.log(sum) // 70_200_000
 }
 
 for (let c = 0; c < 5; c++) {
   console.time('for3');
   const sum = myFor3(urls);
-  console.timeEnd('for3');
-  console.log(sum) // 500_000
+  console.timeEnd('for3'); // 1800ms
+  console.log(sum) // 70_200_000
 }
 for (let c = 0; c < 5; c++) {
   console.time('for4');
   const sum = myFor4(urls);
-  console.timeEnd('for4');
-  console.log(sum) // 500_000
+  console.timeEnd('for4'); // 1400ms
+  console.log(sum) // 70_200_000
 }
