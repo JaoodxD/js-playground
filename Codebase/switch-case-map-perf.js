@@ -7,44 +7,47 @@ const arr = [
   '/xlsx/tttput/okjjjh.xls',
 ];
 
-const folders = new Set(['/css', '/xlsx']);
-function spl(s) {
-  return folders.has(s.slice(0, s.indexOf('/', 1))); //1.05c
-}
-function spl2(url) {
-  const s = url.split('/')[1];
-  return s === 'css' || s === 'xlsx'; //8.8c
-}
-function spl3(url) {
-  for (const s of ['/css/', '/xlsx/']) {
-    if (url.startsWith(s)) return true;
-  }
-  return false;
-}
-function spl4(url) {
-  return (
-    url.substring(0, '/css/'.length) === '/css/' ||
-    url.substring(0, '/xlsx/'.length) === '/xlsx/' //4.68c
-  );
-}
-function spl5(url) {
-  return url.startsWith('/css/') || url.startsWith('/xlsx/'); //7.39c
-}
-
-const regex = /^\/(?:css|xlsx)\//;
-function spl6(url) {
-  return regex.test(url);
-}
-
-const foldersArr = ['/css', '/xlsx'];
-function spl7(s) {
-  return foldersArr.includes(s.slice(0, s.indexOf('/', 1))); //1.05c
-}
-
+const folders = new Map();
 for (const s of arr) {
-  //tests
-  console.log(spl(s), spl2(s), spl3(s), spl4(s), spl5(s),spl6(s), spl7(s));
+  folders.set(s,  1 );
 }
+const l = (browser) => { //269ms
+  switch (browser) {
+    case '/css/kkk/kkkpo.jj':
+      return 1;
+    case '/tttput/okjjjh.xls':
+      return 1;
+    case '/xls/tttput/okjjjh.xls':
+      return 1;
+    case '/ico/tttput/okjjjh.xls':
+      return 1;
+    case '/xlsx/tttput/okjjjh.xls':
+      return 1;
+
+    default:
+      return 0;
+  }
+};
+
+const l2 = (browser) => { //245ms
+  if (browser === '/css/kkk/kkkpo.jj') return 1;
+  if (browser === '/tttput/okjjjh.xls') return 1;
+  if (browser === '/xls/tttput/okjjjh.xls') return 1;
+  if (browser === '/ico/tttput/okjjjh.xls') return 1;
+  if (browser === '/xlsx/tttput/okjjjh.xls') return 1;
+  return 0;
+};
+
+const l3 = (f) => {
+  //6.8ms
+  return folders.has(f)
+    ? folders.get(f)
+    : 0;
+};
+
+const l4 = (f) =>
+  //first 2.7ms, other 0.73ms
+  folders.get(f) || 0;
 
 const urls = [
   '/css/kkk/kkkpo.jj',
@@ -1491,91 +1494,64 @@ const urls = [
 ];
 
 function myFor(arr) {
+  let sum = 0
   for (let j = 0; j < 100_000; j++) {
     for (const s of arr) {
-      spl(s);
+      sum += l(s);
     }
   }
+  return sum
 }
 function myFor2(arr) {
+  let sum = 0
   for (let j = 0; j < 100_000; j++) {
     for (const s of arr) {
-      spl2(s);
+      sum += l2(s);
     }
   }
+  return sum
 }
 function myFor3(arr) {
-  for (let j = 0; j < 100_000_000; j++) {
+  let sum = 0
+  for (let j = 0; j < 100_000; j++) {
     for (const s of arr) {
-      spl4(s);
+      sum += l3(s);
     }
   }
+  return sum
 }
 function myFor4(arr) {
-  for (let j = 0; j < 100_000_000; j++) {
+  let sum = 0
+  for (let j = 0; j < 100_000; j++) {
     for (const s of arr) {
-      spl4(s);
+      sum += l4(s);
     }
   }
+  return sum
 }
-function myFor5(arr) {
-  for (let j = 0; j < 100_000_000; j++) {
-    for (const s of arr) {
-      spl5(s);
-    }
-  }
-}
-
-function myFor6(arr) {
-  for (let j = 0; j < 100_000_000; j++) {
-    for (const s of arr) {
-      spl6(s);
-    }
-  }
-}
-
-function myFor7(arr) {
-  for (let j = 0; j < 100_000_000; j++) {
-    for (const s of arr) {
-      spl7(s);
-    }
-  }
-}
-
-console.log(urls.length);
 for (let c = 0; c < 5; c++) {
   console.time('for');
-  myFor(urls);
-  console.timeEnd('for');
+  const sum = myFor(urls);
+  console.timeEnd('for'); // 470 ms
+  console.log(sum) // 70_200_000
 }
+
 for (let c = 0; c < 5; c++) {
   console.time('for2');
-  myFor2(urls);
-  console.timeEnd('for2');
+  const sum = myFor2(urls);
+  console.timeEnd('for2'); // 470ms
+  console.log(sum) // 70_200_000
 }
 
 for (let c = 0; c < 5; c++) {
   console.time('for3');
-  myFor3(arr);
-  console.timeEnd('for3');
+  const sum = myFor3(urls);
+  console.timeEnd('for3'); // 1800ms
+  console.log(sum) // 70_200_000
 }
 for (let c = 0; c < 5; c++) {
   console.time('for4');
-  myFor4(arr);
-  console.timeEnd('for4');
-}
-for (let c = 0; c < 5; c++) {
-  console.time('for5');
-  myFor5(arr);
-  console.timeEnd('for5');
-}
-for (let c = 0; c < 5; c++) {
-  console.time('for6');
-  myFor6(arr);
-  console.timeEnd('for6');
-}
-for (let c = 0; c < 5; c++) {
-  console.time('for7');
-  myFor7(arr);
-  console.timeEnd('for7');
+  const sum = myFor4(urls);
+  console.timeEnd('for4'); // 1400ms
+  console.log(sum) // 70_200_000
 }
