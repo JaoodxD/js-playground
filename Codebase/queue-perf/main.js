@@ -5,7 +5,7 @@ const { Queue: ArrayQueue } = require('./array-queue.js')
 const NodeQueue = require('./node-queue.js')
 const LinkedQueue = require('./linked-list.js')
 
-const SIZE = 500_000 // 50_000_000
+const SIZE = 50_000_000 // 500_000
 
 const perfTest = (QueueClass, name) => {
   const queue = new QueueClass()
@@ -27,7 +27,7 @@ const perfTest = (QueueClass, name) => {
 }
 
 const queueClasses = [
-  Array,
+//   Array,
   LinkedListQueue,
   ArrayQueue,
   LinkedQueue,
