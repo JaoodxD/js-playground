@@ -1,37 +1,42 @@
-'use strict';
-const { performance } = require('node:perf_hooks');
-const { Queue } = require('./queue');
-const { Queue: Queue2 } = require('./queue2');
+'use strict'
+const { performance } = require('node:perf_hooks')
+const { Queue: LinkedListQueue } = require('./linked-list-queue.js')
+const { Queue: ArrayQueue } = require('./array-queue.js')
+const NodeQueue = require('./node-queue.js')
+const LinkedQueue = require('./linked-list.js')
 
-const SIZE = 20;
+const SIZE = 500_000 // 50_000_000
 
-const perfTest = () => {
-    const queue = new Queue2();
-    let sum = 0;
+const perfTest = (QueueClass, name) => {
+  const queue = new QueueClass()
+  let sum = 0
 
-    console.time('push');
-    for (let i = 0; i < SIZE; i++){
-        queue.push(i);
-    }
-    console.timeEnd('push');
+  console.time(name + ' push')
+  for (let i = 0; i < SIZE; i++) {
+    queue.push(i)
+  }
+  console.timeEnd(name + ' push')
 
-    console.time('array');
-    // const arr = queue.valueOf();
-    for (const value of queue.customInterator()) {
-        // console.log(value);
-    }
-    console.timeEnd('array');
-    console.log([...queue]);
-        // for (let i = 0; i < 500_000; i++) {
-        //     queue.push(() => i);
-        // }
+  console.time(name + ' shift')
+  for (let i = 0; i < SIZE; i++) {
+    sum += queue.shift()
+  }
+  console.timeEnd(name + ' shift')
 
-        // for (let i = 0; i < 500_000; i++) {
-        //     sum += queue.shift()();
-        // }
+  return sum
+}
 
-    return sum;
-};
+const queueClasses = [
+  Array,
+  LinkedListQueue,
+  ArrayQueue,
+  LinkedQueue,
+  NodeQueue
+]
 
-const sum = perfTest();
-console.log(sum);
+for (const constructor of queueClasses) {
+  const name = constructor.prototype.constructor.name
+
+  const sum = perfTest(constructor, name)
+  console.log(sum)
+}
