@@ -7,6 +7,6 @@ const readJson = async path => {
 
 console.time('parse')
 for (let i = 0; i < 1; i++) {
-  await readJson('./resource.json')
+  await readJson('./resource.json') // ~2ms
 }
 console.timeEnd('parse')
