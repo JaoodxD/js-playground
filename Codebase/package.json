@@ -19,6 +19,7 @@
   "homepage": "https://github.com/JaoodxD/js-playground#readme",
   "dependencies": {
     "count-promises": "^1.0.1",
-    "moment": "^2.29.4"
+    "moment": "^2.29.4",
+    "undici": "^6.9.0"
   }
 }

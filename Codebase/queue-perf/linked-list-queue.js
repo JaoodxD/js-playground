@@ -45,7 +45,6 @@ class Queue {
     *customInterator() {
         let element = this.#head;
         while (element) {
-            console.log(`Zdarova: ${element.value}`)
             yield element.value;
             element = element.nextNode;
         }
