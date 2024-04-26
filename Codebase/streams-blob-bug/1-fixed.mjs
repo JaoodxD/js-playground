@@ -35,7 +35,7 @@ async function saveFileChunks (inputStream, fileName, maxRows = 500) {
     outputStream.write(chunk)
       if (count >= maxRows) {
         count = 0
-        outputStream.end()
+        await new Promise((res) => outputStream.close(res))
         const filePath = `${fullPath}-${filesPath.length}.json`
         filesPath.push(filePath)
         outputStream = fs.createWriteStream(filePath)
