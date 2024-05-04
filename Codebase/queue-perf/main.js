@@ -1,5 +1,4 @@
 'use strict'
-const { performance } = require('node:perf_hooks')
 const { Queue: LinkedListQueue } = require('./linked-list-queue.js')
 const { Queue: ArrayQueue } = require('./array-queue.js')
 const NodeQueue = require('./node-queue.js')
