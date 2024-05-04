@@ -2,16 +2,14 @@ const crypto = require('crypto');
 const {
   Worker,
   isMainThread,
-  workerData,
   parentPort,
-  MessageChannel,
-  threadId,
 } = require('worker_threads');
 
-const big64arr = new BigUint64Array(1);
+const buffer = new Uint8Array(8)
+const big64arr = new BigUint64Array(buffer.buffer)
 
 function random64() {
-  crypto.randomFillSync(big64arr);
+  crypto.randomFillSync(buffer);
   return big64arr[0];
 }
 

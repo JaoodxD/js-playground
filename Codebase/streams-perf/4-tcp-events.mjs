@@ -1,10 +1,11 @@
 import { createServer, Socket } from 'node:net'
 import { Readable } from 'node:stream'
 
-createServer(socket => {
+const server = createServer(socket => {
   const stream = Readable.from(numbers(10_000_000))
   stream.pipe(socket)
-}).listen(3000, '127.0.0.1')
+})
+server.listen(3000, '127.0.0.1')
 
 const client = new Socket()
 client.connect(3000, '127.0.0.1')
@@ -17,6 +18,7 @@ client.on('end', () => {
   console.table(data.map(({ length }) => length))
   console.log(Buffer.concat(data).length)
   client.destroy()
+  server.close()
 })
 
 async function* numbers (max = 500) {
