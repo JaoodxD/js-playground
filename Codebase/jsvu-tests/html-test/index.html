@@ -12,6 +12,7 @@
   <button id="neg-zero">-0</button>
 </body>
 <script type="module">
+  /* eslint-disable no-var */
   var [zeroBtn, negZeroBtn] = ['#zero', '#neg-zero'].map((id) => document.querySelector(id))
 
   zeroBtn.addEventListener('click', (e) => {

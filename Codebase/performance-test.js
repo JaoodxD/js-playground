@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 //node --allow-natives-syntax perfomance-test.js
 "use strict";
 const { performance, createHistogram } = require('perf_hooks');

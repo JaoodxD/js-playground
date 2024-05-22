@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 var arr = new Array(100).fill(0).map((e, i) => i)
 var res = 0
 

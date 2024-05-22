@@ -1,4 +1,5 @@
-function build () {
+/* eslint-disable no-var */
+function build() {
   var curr = 0,
     next = 1
   var temp = 0
