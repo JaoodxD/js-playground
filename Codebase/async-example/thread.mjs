@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import { parentPort } from 'node:worker_threads'
 import { readFileSync } from 'node:fs'
 

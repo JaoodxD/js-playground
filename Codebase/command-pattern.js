@@ -1,3 +1,5 @@
+/* eslint-disable no-void */
+
 class Action {
     name;
     #do;

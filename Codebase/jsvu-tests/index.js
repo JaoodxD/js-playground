@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 "use strict";
 function doSum( theInc ) {
   var theSummator = 0;

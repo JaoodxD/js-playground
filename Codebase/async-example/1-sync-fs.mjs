@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import { createServer } from 'node:http'
 import { readFileSync } from 'node:fs'
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 (
     () => {
         const animals = ["собака", "кошка"];

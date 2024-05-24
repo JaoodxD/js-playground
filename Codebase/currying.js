@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 'use strict';
 const { performance } = require('node:perf_hooks');
 

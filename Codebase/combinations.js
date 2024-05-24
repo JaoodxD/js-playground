@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 function f(valuesArray, required) {
 
     var combi = [];

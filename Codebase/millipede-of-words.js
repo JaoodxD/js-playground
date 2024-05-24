@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 'use strict';
 
 // find first letter of the word

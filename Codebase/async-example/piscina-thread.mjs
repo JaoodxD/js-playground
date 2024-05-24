@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import { readFileSync } from 'node:fs'
 
 export default function (path) {

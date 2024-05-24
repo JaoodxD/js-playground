@@ -1,4 +1,5 @@
-var timings = { var: [], const: []};
+/* eslint-disable no-var */
+var timings = { var: [], const: [] };
 function useVar(a)   { var n = 0; for(var i=0; i < 100; ++i) { var s1 = a + i; n += s1 } return n }
 function useConst(c) { let n = 0; for(let i=0; i < 100; ++i) { const s2 = c + i; n += s2 } return n }
 function runvar() { 

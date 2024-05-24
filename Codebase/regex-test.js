@@ -1,3 +1,4 @@
+/* eslint-disable no-var */
 const f1 = () => {
     const filename = 'upload.file1.img.2002.txt';
     const splitResult = filename.split(/\.(?!.*\.)/);
