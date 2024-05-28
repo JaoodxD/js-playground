@@ -27,4 +27,4 @@ const strategies = {
 }
 const call = (name, ...props) => strategies[name](...props);
 
-names.map((name) => call(name, { kakoitoProps: 'ASDASASD' }));
+names.forEach((name) => call(name, { kakoitoProps: 'ASDASASD' }));
