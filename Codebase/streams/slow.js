@@ -20,4 +20,3 @@ const readable = createReadStream(__filename, { encoding: 'utf8' });
 const finishHandler = (err) => console.log(err ? err : 'stream finished');
 
 stream.pipeline(readable, transform, process.stdout, finishHandler);
-// readable.pipe(transform).pipe(process.stdout);
