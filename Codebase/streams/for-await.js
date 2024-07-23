@@ -8,14 +8,12 @@ console.time('writing');
 for (let i = 0; i < 10_000_000; i++) {
   readable.push('Hello, world! ');
 }
-// readable.push('Hello, world! '.repeat(10_000_000));
 readable.push(null);
 console.timeEnd('writing');
 
 async function readStream(stream) {
   for await (const chunk of stream) {
     console.log('chunk', chunk.length);
-    // console.log({ chunk, string: chunk.toString() });
   }
 }
 console.time('reading')

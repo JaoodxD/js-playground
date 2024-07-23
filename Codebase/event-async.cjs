@@ -19,5 +19,4 @@ ee2[Symbol.for('nodejs.rejection')] = console.log
 
 ;(function doSomething () {
   ee1.emit('something')
-  // ee2.emit('something else')
 })()

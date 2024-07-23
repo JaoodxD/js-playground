@@ -3,7 +3,6 @@ import fs from 'node:fs'
 import stream from 'node:stream'
 import { join } from 'node:path'
 import { randomUUID } from 'node:crypto'
-import { setTimeout as sleep } from 'node:timers/promises'
 
 const folderPath = './storage'
 if(!fs.existsSync(folderPath)) await fs.mkdir(folderPath)
@@ -12,7 +11,6 @@ const data = generateData(100)
 
 const paths = await saveFileChunks(data, randomUUID())
 console.log(paths)
-// await sleep(2000)
 
 const files = await Promise.all(paths.map(path => fs.openAsBlob(path)))
 

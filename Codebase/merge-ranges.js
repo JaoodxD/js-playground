@@ -1,7 +1,4 @@
-const close = ([a, b], [x, y]) =>
-  (x >= a && x <= b) ||
-  (y >= a && y <= b)
-
+const close = ([a, b], [x, y]) => (x >= a && x <= b) || (y >= a && y <= b)
 
 const merge = arr =>
   arr.reduce((acc, range) => {
@@ -38,12 +35,4 @@ const array3 = [
   [6, 8]
 ]
 
-// console.log(merge(array1));
-// console.log(merge(array2));
 console.log(merge(array3))
-
-// const x = 8,
-//   y = 10,
-//   a = 5,
-//   b = 8
-// console.log((x >= a && x <= b) || (y >= a && y <= b))

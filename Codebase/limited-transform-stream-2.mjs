@@ -13,7 +13,7 @@ const numGenerator = async function* () {
 
 const consumed = []
 
-const consumer = async function* (source) {
+const consumer = async function (source) {
   for await (const chunk of source) {
     consumed.push(chunk)
   }

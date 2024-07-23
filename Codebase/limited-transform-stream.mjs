@@ -1,6 +1,5 @@
 import { Transform, Readable } from 'node:stream'
 import { pipeline } from 'node:stream/promises'
-import timers from 'node:timers'
 
 let lastNumYielded = 0
 
@@ -15,7 +14,7 @@ const readable = Readable.from(numGenerator())
 
 const consumed = []
 
-const consumer = async function* (source) {
+const consumer = async function (source) {
   for await (const chunk of source) {
     consumed.push(chunk)
   }
