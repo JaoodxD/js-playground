@@ -15,6 +15,7 @@ const broadcastMessage = () => {
     return
   }
 
+  console.log('\n')
   console.log(new Date().toLocaleTimeString(), 'Broadcasting queued message')
   ee.emit('message', messageQueue)
   messageQueue = []
