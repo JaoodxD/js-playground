@@ -4,21 +4,16 @@ const ee = new EventEmitter()
 
 let messageQueue = []
 
-const postMessage = msg => {
-  console.log(new Date().toLocaleTimeString(), 'Posting message')
-  messageQueue.push({ msg, date: new Date().toLocaleTimeString() })
-}
-
 const broadcastMessage = () => {
-  if (!messageQueue.length) {
-    console.log('No message to broadcast')
-    return
-  }
-
   console.log('\n')
   console.log(new Date().toLocaleTimeString(), 'Broadcasting queued message')
   ee.emit('message', messageQueue)
   messageQueue = []
+}
+
+const postMessage = msg => {
+  console.log(new Date().toLocaleTimeString(), 'Posting message')
+  messageQueue.push({ msg, date: new Date().toLocaleTimeString() })
 }
 
 const user1Listener = msg => {
