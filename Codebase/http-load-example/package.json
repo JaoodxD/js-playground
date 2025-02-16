@@ -10,8 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.19.2",
-    "fastify": "^4.25.2",
+    "express": "^4.21.2",
+    "fastify": "^4.28.1",
     "naive-concurrency": "github:JaoodxD/naive-concurrency-js"
   }
 }
